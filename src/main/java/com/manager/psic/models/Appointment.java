@@ -26,7 +26,10 @@ public class Appointment {
     private Long id;
 
     @NotNull(message = "please provide a time")
-    private Date time;
+    private String time;
+
+    @NotEmpty(message = "Please provide a reason")
+    private String reason;
 
     @NotEmpty(message = "Please provide a room")
     private String room;

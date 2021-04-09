@@ -13,9 +13,12 @@ const AddAppointment = () => {
         note: "",
         patientId: "",
         physicianId: "",
+        reason: "",
         treatmentTypeId: ""
     };
     const [appointment, setAppointment] = useState(initialAppointmentState);
+    const [expertise, setExpertise] = useState([]);
+    const [consultationTime, setConsultationTime] = useState([]);
     const [rooms, setRooms] = useState([]);
     const [patients, setPatients] = useState([]);
     const [physicians, setPhysicians] = useState([]);
@@ -26,8 +29,9 @@ const AddAppointment = () => {
 
     useEffect(() => {
         retrieveRooms();
+        retrieveExpertise();
         retrievePatients();
-        retrievePhysicians();
+        // retrievePhysicians();
         retrieveTreatmentTypes();
     }, []);
 
@@ -36,6 +40,17 @@ const AddAppointment = () => {
             .then(response => {
                 setRooms(response.data);
                 console.log({ roomsResp: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const retrieveExpertise = () => {
+        PhysicianDataService.getExpertise()
+            .then(response => {
+                setExpertise(response.data);
+                console.log({ expertisesResp: response.data });
             })
             .catch(e => {
                 console.log(e);
@@ -53,11 +68,24 @@ const AddAppointment = () => {
             });
     };
 
-    const retrievePhysicians = () => {
-        PhysicianDataService.getAll()
+    const retrievePhysicianByExpertise = (name) => {
+        console.log('retrievePhysicianByExpertise called: ', { name })
+        PhysicianDataService.getPhysicianByExpertise(name)
             .then(response => {
                 setPhysicians(response.data);
-                console.log({ physiciansResp: response.data });
+                console.log({ physiciansExpertiseResp: response.data });
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const retrievePhysicianConsultationTime = (physicianId) => {
+        console.log('retrievePhysicianConsultationTime called: ', { physicianId })
+        PhysicianDataService.getPhysicianConsultationTime(physicianId)
+            .then(response => {
+                setConsultationTime(response.data);
+                console.log({ physiciansConsultationTimeResp: response.data });
             })
             .catch(e => {
                 console.log(e);
@@ -75,17 +103,32 @@ const AddAppointment = () => {
             });
     };
 
+    const handleReasonChange = event => {
+        const { name, value } = event.target;
+        setAppointment({ ...appointment, [name]: value });
+        setPhysicians([]);
+        setConsultationTime([]);
+        retrievePhysicianByExpertise(value);
+    };
+
+    const handlePhysicianChange = event => {
+        const { name, value } = event.target;
+        setAppointment({ ...appointment, [name]: value });
+        retrievePhysicianConsultationTime(value);
+    };
+
     const handleInputChange = event => {
         const { name, value } = event.target;
         setAppointment({ ...appointment, [name]: value });
-        console.log({ appointment, name, value })
     };
 
     const saveAppointment = () => {
         const data = {
+            status: 'open',
             room: appointment.room,
             time: appointment.time,
             note: appointment.note,
+            reason: appointment.reason,
             physicianId: appointment.physicianId,
             patientId: appointment.patientId,
             treatmentTypeId: appointment.treatmentTypeId,
@@ -155,15 +198,15 @@ const AddAppointment = () => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="room">Room</label>
+                            <label htmlFor="reason">Reason</label>
                             <select className="form-control"
-                                onChange={handleInputChange}
-                                name="room"
-                                value={appointment.room}>
+                                    onChange={handleReasonChange}
+                                    name="reason"
+                                    value={appointment.reason}>
                                 <option value=""> Select... </option>
                                 {
-                                    rooms.map((room, index) => (
-                                        <option key={index} value={room.name}>{room.name}</option> )
+                                    expertise.map((reason, index) => (
+                                        <option key={index} value={reason}>{reason}</option> )
                                     )
                                 }
                             </select>
@@ -172,7 +215,7 @@ const AddAppointment = () => {
                         <div className="form-group">
                             <label htmlFor="physician">Physician</label>
                             <select className="form-control"
-                                    onChange={handleInputChange}
+                                    onChange={handlePhysicianChange}
                                     name="physicianId"
                                     value={appointment.physicianId}>
                                 <option value=""> Select... </option>
@@ -199,16 +242,33 @@ const AddAppointment = () => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="time">Time</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="time"
-                                required
-                                value={appointment.time}
-                                onChange={handleInputChange}
-                                name="time"
-                            />
+                            <label htmlFor="time">Consultation Time</label>
+                            <select className="form-control"
+                                    onChange={handleInputChange}
+                                    name="time"
+                                    value={appointment.time}>
+                                <option value=""> Select... </option>
+                                {
+                                    consultationTime.map((time, index) => (
+                                        <option key={index} value={time.time}>{time.time}</option> )
+                                    )
+                                }
+                            </select>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="room">Room</label>
+                            <select className="form-control"
+                                    onChange={handleInputChange}
+                                    name="room"
+                                    value={appointment.room}>
+                                <option value=""> Select... </option>
+                                {
+                                    rooms.map((room, index) => (
+                                        <option key={index} value={room.name}>{room.name}</option> )
+                                    )
+                                }
+                            </select>
                         </div>
 
                         <div className="form-group">

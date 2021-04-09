@@ -161,7 +161,7 @@ const AppointmentsList = () => {
                             <label>
                                 <strong>Time:</strong>
                             </label>{" "}
-                            {utils.dateYMD(currentAppointment.time)}
+                            {currentAppointment.time}
                         </div>
                         <div>
                             <label>

@@ -57,8 +57,9 @@ public class Physician {
     @Column(length = 5)
     private String consultationTime;
 
-    @Enumerated(EnumType.STRING)
+//    @Enumerated(EnumType.STRING)
     @Column(name = "expertise")
     @NotNull(message = "Expertise must not be null and of the type Physio, Osteo, or Rehab")
-    private Expertise expertise;
+//    private Expertise expertise;
+    private String expertise;
 }

@@ -6,6 +6,18 @@ const getAll = () => {
     return http.get(`${base}`);
 };
 
+const getExpertise = () => {
+    return http.get(`${base}/expertise`);
+};
+
+const getPhysicianByExpertise = (name) => {
+    return http.get(`${base}/expertise/${name}`);
+};
+
+const getPhysicianConsultationTime = (id) => {
+    return http.get(`${base}/${id}/consultation-times`);
+};
+
 const get = id => {
     return http.get(`${base}/${id}`);
 };
@@ -37,5 +49,8 @@ export default {
     update,
     remove,
     removeAll,
-    findByTitle
+    findByTitle,
+    getExpertise,
+    getPhysicianByExpertise,
+    getPhysicianConsultationTime,
 };

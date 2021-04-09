@@ -25,14 +25,24 @@ INSERT INTO patients (title, first_name, last_name, age, phone_number, address) 
     ('Mr.', 'Tolu', 'Fit', 24, '08130167617', 'Lagos, Nigeria'),
     ('Mr.', 'James', 'Bond', 24, '08130167617', 'Lagos, Nigeria');
 
-INSERT INTO appointments (patient_id, physician_id, treatment_type_id, time, room, note, status) VALUES
-   ( 1, 1, 1, '2021-03-01 22:10:01', 'A Suites', 'See you then', 'cancelled'),
-   ( 2, 2, 2, '2021-04-01 22:10:01', 'B Suites', 'See you then', 'open'),
-   ( 3, 3, 1, '2021-05-01 22:10:01', 'C Suites', '', 'attended');
+INSERT INTO appointments (patient_id, physician_id, treatment_type_id, reason, time, room, note, status) VALUES
+   ( 1, 1, 1, 'PHYSIOTHERAPY', '2021-03-01 22:10:01', 'A Suites', 'See you then', 'cancelled'),
+   ( 2, 2, 2, 'OSTEOPATHY', '2021-04-01 22:10:01', 'B Suites', 'See you then', 'open'),
+   ( 3, 3, 1, 'REHABILITATION', '2021-05-01 22:10:01', 'C Suites', '', 'attended');
 
 INSERT INTO treatment_types (name) VALUES
    ( 'Neural mobilisation' ), ( 'Acupuncture' ), ( 'Massage' ),
    ( 'Mobilisation of the spine and joints' ), ( 'Pool rehabilitation' );
+
+INSERT INTO consultation_times (physician_id, time) VALUES
+   ( 1, '2PM Monday' ),
+   ( 1, '3PM Wednessday' ),
+   ( 2, '12PM Tuesday' ),
+   ( 2, '5PM Thursday' ),
+   ( 3, '6PM Saturday' ),
+   ( 3, '8PM Tuesday' ),
+   ( 4, '2PM Sunday' ),
+   ( 5, '1PM Sunday' );
 
 INSERT INTO rooms (name) VALUES
    ( 'A Suites' ), ( 'B Suites' ), ( 'C Suites' ), ( 'D Suites' );
