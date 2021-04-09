@@ -1,6 +1,6 @@
 import http from "../http-common";
 
-const base = '/physicians';
+const base = '/patients';
 
 const getAll = () => {
     return http.get(`${base}`);
@@ -27,7 +27,7 @@ const removeAll = () => {
 };
 
 const findByTitle = name => {
-    return http.get(`${base}?name=${title}`);
+    return http.get(`${base}?name=${name}`);
 };
 
 export default {

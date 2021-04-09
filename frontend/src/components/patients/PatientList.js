@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import PhysicianDataService from "../services/PhysiciansService";
+import PatientDataService from "../../services/PatientsService";
 import { Link } from "react-router-dom";
-const utils = require('../utils');
+const utils = require('../../utils');
 
-const PhysiciansList = () => {
-    const [physicians, setPhysicians] = useState([]);
-    const [currentPhysician, setCurrentPhysician] = useState(null);
+const PatientsList = () => {
+    const [patients, setPatients] = useState([]);
+    const [currentPatient, setCurrentPatient] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
 
     useEffect(() => {
-        retrievePhysicians();
+        retrievePatients();
     }, []);
 
     const onChangeSearchTitle = e => {
@@ -18,10 +18,10 @@ const PhysiciansList = () => {
         setSearchTitle(searchTitle);
     };
 
-    const retrievePhysicians = () => {
-        PhysicianDataService.getAll()
+    const retrievePatients = () => {
+        PatientDataService.getAll()
             .then(response => {
-                setPhysicians(response.data);
+                setPatients(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -30,18 +30,18 @@ const PhysiciansList = () => {
     };
 
     const refreshList = () => {
-        retrievePhysicians();
-        setCurrentPhysician(null);
+        retrievePatients();
+        setCurrentPatient(null);
         setCurrentIndex(-1);
     };
 
-    const setActivePhysician = (physician, index) => {
-        setCurrentPhysician(physician);
+    const setActivePatient = (patient, index) => {
+        setCurrentPatient(patient);
         setCurrentIndex(index);
     };
 
-    const removeAllPhysicians = () => {
-        PhysicianDataService.removeAll()
+    const removeAllPatients = () => {
+        PatientDataService.removeAll()
             .then(response => {
                 console.log(response.data);
                 refreshList();
@@ -52,9 +52,9 @@ const PhysiciansList = () => {
     };
 
     const findByTitle = () => {
-        PhysicianDataService.findByTitle(searchTitle)
+        PatientDataService.findByTitle(searchTitle)
             .then(response => {
-                setPhysicians(response.data);
+                setPatients(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -85,79 +85,79 @@ const PhysiciansList = () => {
                 </div>
             </div>
             <div className="col-md-6">
-                <h4>Physicians List</h4>
+                <h4>Patients List</h4>
 
                 <ul className="list-group">
-                    {physicians &&
-                    physicians.map((physician, index) => (
+                    {patients &&
+                    patients.map((patient, index) => (
                         <li
                             className={
                                 "list-group-item " + (index === currentIndex ? "active" : "")
                             }
-                            onClick={() => setActivePhysician(physician, index)}
+                            onClick={() => setActivePatient(patient, index)}
                             key={index}
                         >
-                            {physician.firstName} {physician.lastName}
+                            {patient.firstName} {patient.lastName}
                         </li>
                     ))}
                 </ul>
 
                 <button
                     className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllPhysicians}
+                    onClick={removeAllPatients}
                 >
                     Remove All
                 </button>
             </div>
             <div className="col-md-6">
-                {currentPhysician ? (
+                {currentPatient ? (
                     <div>
-                        <h4>Physician</h4>
+                        <h4>Patient</h4>
                         <div>
                             <label>
                                 <strong>Title:</strong>
                             </label>{" "}
-                            {currentPhysician.title}
+                            {currentPatient.title}
                         </div>
                         <div>
                             <label>
                                 <strong>Name:</strong>
                             </label>{" "}
-                            {currentPhysician.firstName} {currentPhysician.lastName}
+                            {currentPatient.firstName} {currentPatient.lastName}
                         </div>
                         <div>
                             <label>
                                 <strong>Expertise:</strong>
                             </label>{" "}
-                            {currentPhysician.expertise}
+                            {currentPatient.expertise}
                         </div>
                         <div>
                             <label>
                                 <strong>Phone:</strong>
                             </label>{" "}
-                            {currentPhysician.phoneNumber}
+                            {currentPatient.phoneNumber}
                         </div>
                         <div>
                             <label>
                                 <strong>Consultation Time:</strong>
                             </label>{" "}
-                            {currentPhysician.consultationTime}
+                            {currentPatient.consultationTime}
                         </div>
                         <div>
                             <label>
                                 <strong>Address:</strong>
                             </label>{" "}
-                            {currentPhysician.address}
+                            {currentPatient.address}
                         </div>
                         <div>
                             <label>
                                 <strong>Employment Date:</strong>
                             </label>{" "}
-                            {utils.dateYMD(currentPhysician.createdAt)}
+                            {utils.dateYMD(currentPatient.createdAt)}
                         </div>
 
                         <Link
-                            to={"/physicians/" + currentPhysician.id}
+                            to={"/patients/" + currentPatient.id}
                             className="badge badge-warning"
                         >
                             Edit
@@ -166,7 +166,7 @@ const PhysiciansList = () => {
                 ) : (
                     <div>
                         <br />
-                        <p>Please click on a Physician...</p>
+                        <p>Please click on a Patient...</p>
                     </div>
                 )}
             </div>
@@ -174,4 +174,4 @@ const PhysiciansList = () => {
     );
 };
 
-export default PhysiciansList;
+export default PatientsList;

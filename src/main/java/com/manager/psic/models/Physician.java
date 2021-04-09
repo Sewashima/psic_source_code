@@ -23,6 +23,10 @@ public class Physician {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    @NotEmpty(message = "title must not be empty")
+    private String title;
+
     @NotEmpty(message = "first name must be provided")
     @Size(min = 3, max = 30, message = "min of 3 and max of 30 characters")
     private String firstName;

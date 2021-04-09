@@ -1,11 +1,11 @@
 -- CREATE DATABASE hms IF NOT EXISTS;
 
-INSERT INTO physicians (first_name, last_name, address, phone_number, expertise, consultation_time, created_at, updated_at) VALUES
-  ('Tobi', 'Bola', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Monday', '2021-03-01', '2021-03-01'),
-  ('Sade', 'Ridwan', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Tuesday', '2021-03-01', '2021-03-01'),
-  ('John', 'Sam', 'Lagos State, Nigeria', '08130167617', 'OSTEOPATHY', 'Wednesday', '2021-03-01', '2021-03-01'),
-  ('Sam', 'Alladyce', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Thursday', '2021-03-01', '2021-03-01'),
-  ('Johnson', 'Fergie', 'Lagos State, Nigeria', '08130167617', 'REHABILITATION', 'Friday', '2021-03-01', '2021-03-01');
+INSERT INTO physicians (title, first_name, last_name, address, phone_number, expertise, consultation_time, created_at, updated_at) VALUES
+  ('Mr', 'Tobi', 'Bola', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Monday', '2021-03-01', '2021-03-01'),
+  ('Mrs', 'Sade', 'Ridwan', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Tuesday', '2021-03-01', '2021-03-01'),
+  ('Mr', 'John', 'Sam', 'Lagos State, Nigeria', '08130167617', 'OSTEOPATHY', 'Wednesday', '2021-03-01', '2021-03-01'),
+  ('Mrs', 'Sam', 'Alladyce', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Thursday', '2021-03-01', '2021-03-01'),
+  ('Mr', 'Johnson', 'Fergie', 'Lagos State, Nigeria', '08130167617', 'REHABILITATION', 'Friday', '2021-03-01', '2021-03-01');
 
 INSERT INTO patients (first_name, last_name, age, phone_number, address) VALUES
     ('Wallet', 'Check', 24, '08130167617', 'Lagos, Nigeria'),

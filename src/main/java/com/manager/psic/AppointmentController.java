@@ -36,7 +36,7 @@ public class AppointmentController {
 
     @GetMapping("/physicians/{id}")
     public List<Appointment> getPhysicianAppointment(@PathVariable Long id) {
-        logger.info(String.format("Getting appointments for Physician %s", id));
+        logger.info(String.format("Getting appointments for EditPhysician %s", id));
         return appointmentRepository.findByPhysicianId(id);
     }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PhysicianDataService from "../services/PhysiciansService";
 
-const Physician = props => {
+const EditPhysician = props => {
     const initialPhysicianState = {
         id: null,
         title: "",
@@ -151,4 +151,4 @@ const Physician = props => {
     );
 };
 
-export default Physician;
+export default EditPhysician;

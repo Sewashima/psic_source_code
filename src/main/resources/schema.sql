@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS physicians (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
     first_name VARCHAR(250) NOT NULL,
     last_name VARCHAR(250) NOT NULL,
     address VARCHAR(250) NULL,

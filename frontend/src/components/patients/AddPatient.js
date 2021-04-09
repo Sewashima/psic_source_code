@@ -1,30 +1,30 @@
 import React, { useState } from "react";
-import PhysicianDataService from "../services/PhysiciansService";
+import PatientDataService from "../../services/PatientsService";
 
-const AddPhysician = () => {
-    const initialPhysicianState = {
+const AddPatient = () => {
+    const initialPatientState = {
         id: null,
         title: "",
         description: "",
         published: false
     };
-    const [physician, setPhysician] = useState(initialPhysicianState);
+    const [patient, setPatient] = useState(initialPatientState);
     const [submitted, setSubmitted] = useState(false);
 
     const handleInputChange = event => {
         const { name, value } = event.target;
-        setPhysician({ ...physician, [name]: value });
+        setPatient({ ...patient, [name]: value });
     };
 
-    const savePhysician = () => {
+    const savePatient = () => {
         var data = {
-            title: physician.title,
-            description: physician.description
+            title: patient.title,
+            description: patient.description
         };
 
-        PhysicianDataService.create(data)
+        PatientDataService.create(data)
             .then(response => {
-                setPhysician({
+                setPatient({
                     id: response.data.id,
                     title: response.data.title,
                     description: response.data.description,
@@ -38,8 +38,8 @@ const AddPhysician = () => {
             });
     };
 
-    const newPhysician = () => {
-        setPhysician(initialPhysicianState);
+    const newPatient = () => {
+        setPatient(initialPatientState);
         setSubmitted(false);
     };
 
@@ -48,7 +48,7 @@ const AddPhysician = () => {
             {submitted ? (
                 <div>
                     <h4>You submitted successfully!</h4>
-                    <button className="btn btn-success" onClick={newPhysician}>
+                    <button className="btn btn-success" onClick={newPatient}>
                         Add
                     </button>
                 </div>
@@ -61,7 +61,7 @@ const AddPhysician = () => {
                             className="form-control"
                             id="title"
                             required
-                            value={physician.title}
+                            value={patient.title}
                             onChange={handleInputChange}
                             name="title"
                         />
@@ -74,13 +74,13 @@ const AddPhysician = () => {
                             className="form-control"
                             id="description"
                             required
-                            value={physician.description}
+                            value={patient.description}
                             onChange={handleInputChange}
                             name="description"
                         />
                     </div>
 
-                    <button onClick={savePhysician} className="btn btn-success">
+                    <button onClick={savePatient} className="btn btn-success">
                         Submit
                     </button>
                 </div>
@@ -89,4 +89,4 @@ const AddPhysician = () => {
     );
 };
 
-export default AddPhysician;
+export default AddPatient;
