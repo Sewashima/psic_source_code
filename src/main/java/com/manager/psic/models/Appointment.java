@@ -43,6 +43,7 @@ public class Appointment {
     @Column(name = "physician_id")
     private Long physicianId;
 
+    @NotNull(message = "please supply a patient")
     @Column(name = "patient_id")
     private Long patientId;
 
@@ -62,6 +63,8 @@ public class Appointment {
     @NotNull(message = "Please provide a treatment type")
     @Column(name = "treatment_type_id")
     private Long treatmentTypeId;
+
+    private String status;  // cancelled, attended, open
 
     @CreationTimestamp
     private Date createdAt;

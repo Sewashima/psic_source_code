@@ -13,6 +13,10 @@ import AddPatient from "./../../../frontend/src/components/patients/AddPatient";
 import EditPatient from "./../../../frontend/src/components/patients/EditPatient";
 import PatientsList from "./../../../frontend/src/components/patients/PatientList";
 
+import AddAppointment from "./../../../frontend/src/components/appointments/AddAppointment";
+import EditAppointment from "./../../../frontend/src/components/appointments/EditAppointment";
+import AppointmentList from "./../../../frontend/src/components/appointments/AppointmentList";
+
 // import Patient from './../../../frontend/src/components/patients/index';
 // import { AddPatient, EditPatient, PatientsList } from './../../../frontend/src/components/patients/index';
 
@@ -30,13 +34,23 @@ function App() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/physician/add"} className="nav-link">
-                            Add
+                        <Link to={"/appointment/add"} className="nav-link">
+                            Book Appointment
                         </Link>
                     </li>
                     <li className="nav-item">
                         <Link to={"/patients"} className="nav-link">
                             Patients
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/appointments"} className="nav-link">
+                            Appointments
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/patients"} className="nav-link">
+                            Consultations
                         </Link>
                     </li>
                 </div>
@@ -51,6 +65,10 @@ function App() {
                     <Route exact path="/patients" component={PatientsList} />
                     <Route exact path="/patient/add" component={AddPatient} />
                     <Route path="/patients/:id" component={EditPatient} />
+
+                    <Route exact path="/appointments" component={AppointmentList} />
+                    <Route exact path="/appointment/add" component={AddAppointment} />
+                    <Route path="/appointments/:id" component={EditAppointment} />
                 </Switch>
             </div>
         </div>

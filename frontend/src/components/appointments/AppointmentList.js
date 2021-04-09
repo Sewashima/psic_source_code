@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import PatientDataService from "../../services/PatientsService";
+import AppointmentDataService from "../../services/AppointmentsService";
 import { Link } from "react-router-dom";
 const utils = require('../../utils');
 
-const PatientsList = () => {
-    const [patients, setPatients] = useState([]);
-    const [currentPatient, setCurrentPatient] = useState(null);
+const AppointmentsList = () => {
+    const [appointments, setAppointments] = useState([]);
+    const [currentAppointment, setCurrentAppointment] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [searchTitle, setSearchTitle] = useState("");
 
     useEffect(() => {
-        retrievePatients();
+        retrieveAppointments();
     }, []);
 
     const onChangeSearchTitle = e => {
@@ -18,10 +18,10 @@ const PatientsList = () => {
         setSearchTitle(searchTitle);
     };
 
-    const retrievePatients = () => {
-        PatientDataService.getAll()
+    const retrieveAppointments = () => {
+        AppointmentDataService.getAll()
             .then(response => {
-                setPatients(response.data);
+                setAppointments(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -30,18 +30,18 @@ const PatientsList = () => {
     };
 
     const refreshList = () => {
-        retrievePatients();
-        setCurrentPatient(null);
+        retrieveAppointments();
+        setCurrentAppointment(null);
         setCurrentIndex(-1);
     };
 
-    const setActivePatient = (patient, index) => {
-        setCurrentPatient(patient);
+    const setActiveAppointment = (appointment, index) => {
+        setCurrentAppointment(appointment);
         setCurrentIndex(index);
     };
 
-    const removeAllPatients = () => {
-        PatientDataService.removeAll()
+    const createAppointment = (data) => {
+        AppointmentDataService.create(data)
             .then(response => {
                 console.log(response.data);
                 refreshList();
@@ -52,9 +52,9 @@ const PatientsList = () => {
     };
 
     const findByTitle = () => {
-        PatientDataService.findByTitle(searchTitle)
+        AppointmentDataService.findByTitle(searchTitle)
             .then(response => {
-                setPatients(response.data);
+                setAppointments(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -85,19 +85,21 @@ const PatientsList = () => {
                 </div>
             </div>
             <div className="col-md-6">
-                <h4>Patients List</h4>
+                <h4>Appointments List</h4>
 
                 <ul className="list-group">
-                    {patients &&
-                    patients.map((patient, index) => (
+                    {appointments &&
+                    appointments.map((appointment, index) => (
                         <li
                             className={
                                 "list-group-item " + (index === currentIndex ? "active" : "")
                             }
-                            onClick={() => setActivePatient(patient, index)}
+                            onClick={() => setActiveAppointment(appointment, index)}
                             key={index}
                         >
-                            {index + 1} - {patient.firstName} {patient.lastName}
+                            {index + 1} - {appointment.treatmentType.name} ||
+                            ({appointment.patient.firstName} {appointment.patient.lastName}) ||
+                            ({appointment.room} || {utils.dateYMD(appointment.time)})
                         </li>
                     ))}
                 </ul>
@@ -112,13 +114,13 @@ const PatientsList = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {patients && patients.map((patient, index) => (
+                        {appointments && appointments.map((appointment, index) => (
 
-                            <tr key={patient.id}>
-                                <td>{patient.id}</td>
-                                <td>{patient.firstName}</td>
-                                <td>{patient.lastName}</td>
-                                <td><button className="btn btn-info" onClick={() => setActivePatient(patient, index)}>View</button></td>
+                            <tr key={appointment.id}>
+                                <td>{appointment.id}</td>
+                                <td>{appointment.firstName}</td>
+                                <td>{appointment.lastName}</td>
+                                <td><button className="btn btn-info" onClick={() => setActiveAppointment(appointment, index)}>View</button></td>
                             </tr>
 
                         ))}
@@ -126,50 +128,56 @@ const PatientsList = () => {
                     </table>
                 </div>*/}
 
-                <button
-                    className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllPatients}
-                >
-                    Remove All
-                </button>
+                <Link to={"/appointment/add"} className="badge badge-info">
+                    Add Appointment
+                </Link>
+                {/*<button className="m-3 btn btn-sm btn-primary" onClick={createAppointment}>
+                    Add Appointment
+                </button>*/}
             </div>
             <div className="col-md-6">
-                {currentPatient ? (
+                {currentAppointment ? (
                     <div>
-                        <h4>Patient</h4>
+                        <h4>Appointment</h4>
                         <div>
                             <label>
-                                <strong>Title:</strong>
+                                <strong>Treatment:</strong>
                             </label>{" "}
-                            {currentPatient.title}
+                            {currentAppointment.treatmentType.name}
                         </div>
                         <div>
                             <label>
-                                <strong>Name:</strong>
+                                <strong>Physician:</strong>
                             </label>{" "}
-                            {currentPatient.firstName} {currentPatient.lastName}
+                            {currentAppointment.physician.firstName} {currentAppointment.physician.lastName}
                         </div>
                         <div>
                             <label>
-                                <strong>Age:</strong>
+                                <strong>Room:</strong>
                             </label>{" "}
-                            {currentPatient.age}
+                            {currentAppointment.room}
                         </div>
                         <div>
                             <label>
-                                <strong>Phone:</strong>
+                                <strong>Time:</strong>
                             </label>{" "}
-                            {currentPatient.phoneNumber}
+                            {utils.dateYMD(currentAppointment.time)}
                         </div>
                         <div>
                             <label>
-                                <strong>Address:</strong>
+                                <strong>Booked on:</strong>
                             </label>{" "}
-                            {currentPatient.address}
+                            {utils.dateYMD(currentAppointment.createdAt)}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Status :</strong>
+                            </label>{" "}
+                            {currentAppointment.status}
                         </div>
 
                         <Link
-                            to={"/patients/" + currentPatient.id}
+                            to={"/appointments/" + currentAppointment.id}
                             className="badge badge-warning"
                         >
                             Edit
@@ -178,7 +186,7 @@ const PatientsList = () => {
                 ) : (
                     <div>
                         <br />
-                        <p>Please click on a Patient...</p>
+                        <p>Please click on a Appointment...</p>
                     </div>
                 )}
             </div>
@@ -186,4 +194,4 @@ const PatientsList = () => {
     );
 };
 
-export default PatientsList;
+export default AppointmentsList;

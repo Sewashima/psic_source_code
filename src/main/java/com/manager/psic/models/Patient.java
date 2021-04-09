@@ -1,7 +1,7 @@
 package com.manager.psic.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
@@ -19,11 +19,14 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "title")
+    private String title;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
     private int age;
+    private String phoneNumber;
     private String address;
     @Column(name = "created_at")
     private Date createdAt;
@@ -36,5 +39,4 @@ public class Patient {
     private List<Appointment> appointments;
 
     private Date updatedAt;
-
 }

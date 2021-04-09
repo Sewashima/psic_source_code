@@ -17,7 +17,7 @@ const AddPatient = () => {
     };
 
     const savePatient = () => {
-        var data = {
+        const data = {
             title: patient.title,
             description: patient.description
         };
