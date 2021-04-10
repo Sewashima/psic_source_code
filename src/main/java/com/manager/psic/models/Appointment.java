@@ -56,7 +56,6 @@ public class Appointment {
     @ManyToOne(targetEntity = Patient.class, fetch = FetchType.EAGER)
     private Patient patient;
 
-    // @Transient
     @JsonIgnore
     @JsonBackReference
     @OneToOne(targetEntity = TreatmentType.class, fetch = FetchType.EAGER)

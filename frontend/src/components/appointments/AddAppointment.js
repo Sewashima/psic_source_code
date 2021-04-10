@@ -28,7 +28,7 @@ const AddAppointment = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
-        retrieveRooms();
+        // retrieveRooms();
         retrieveExpertise();
         retrievePatients();
         // retrievePhysicians();
@@ -114,6 +114,11 @@ const AddAppointment = () => {
     const handlePhysicianChange = event => {
         const { name, value } = event.target;
         setAppointment({ ...appointment, [name]: value });
+
+        let roomArr = [];
+        const currentPhysician = physicians.find((physician) => physician.id === value);
+        currentPhysician.rooms ? currentPhysician.rooms.map((r) => roomArr.push(r.room)) : [];
+        setRooms(roomArr);
         retrievePhysicianConsultationTime(value);
     };
 
