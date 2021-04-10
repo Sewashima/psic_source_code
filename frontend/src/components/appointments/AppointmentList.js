@@ -127,8 +127,9 @@ const AppointmentsList = () => {
                     </table>
                 </div>*/}
 
+                <br/>
                 <Link to={"/appointment/add"} className="badge badge-info">
-                    Add Appointment
+                    Book an Appointment
                 </Link>
                 {/*<button className="m-3 btn btn-sm btn-primary" onClick={createAppointment}>
                     Add Appointment
@@ -189,7 +190,7 @@ const AppointmentsList = () => {
                 ) : (
                     <div>
                         <br />
-                        <p>Please click on a Appointment...</p>
+                        <p>Please click on a Appointment to view...</p>
                     </div>
                 )}
             </div>

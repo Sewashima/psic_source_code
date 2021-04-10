@@ -29,23 +29,18 @@ function App() {
                 </a>
                 <div className="navbar-nav mr-auto">
                     <li className="nav-item">
+                        <Link to={"/appointments"} className="nav-link">
+                            Appointments
+                        </Link>
+                    </li>
+                    <li className="nav-item">
                         <Link to={"/physicians"} className="nav-link">
                             Physicians
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/appointment/add"} className="nav-link">
-                            Book Appointment
-                        </Link>
-                    </li>
-                    <li className="nav-item">
                         <Link to={"/patients"} className="nav-link">
                             Patients
-                        </Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link to={"/appointments"} className="nav-link">
-                            Appointments
                         </Link>
                     </li>
                     <li className="nav-item">
@@ -58,17 +53,17 @@ function App() {
 
             <div className="container mt-3">
                 <Switch>
-                    <Route exact path={["/", "/physicians"]} component={PhysiciansList} />
+                    <Route exact path={["/", "/appointments"]} component={AppointmentList} />
+                    <Route exact path="/appointment/add" component={AddAppointment} />
+                    <Route path="/appointments/:id" component={EditAppointment} />
+
+                    <Route exact path="/physicians" component={PhysiciansList} />
                     <Route exact path="/physician/add" component={AddPhysician} />
                     <Route path="/physicians/:id" component={EditPhysician} />
 
                     <Route exact path="/patients" component={PatientsList} />
                     <Route exact path="/patient/add" component={AddPatient} />
                     <Route path="/patients/:id" component={EditPatient} />
-
-                    <Route exact path="/appointments" component={AppointmentList} />
-                    <Route exact path="/appointment/add" component={AddAppointment} />
-                    <Route path="/appointments/:id" component={EditAppointment} />
                 </Switch>
             </div>
         </div>
