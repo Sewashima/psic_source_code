@@ -1,5 +1,4 @@
 -- CREATE DATABASE hms IF NOT EXISTS;
-
 INSERT INTO physicians (title, first_name, last_name, address, phone_number, expertise, consultation_time, created_at, updated_at) VALUES
   ('Mr', 'Physician', 'First', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Monday', '2021-03-01', '2021-03-01'),
   ('Mrs', 'Sade', 'Ridwan', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Tuesday', '2021-03-01', '2021-03-01'),
@@ -45,4 +44,8 @@ INSERT INTO consultation_times (physician_id, time) VALUES
    ( 5, '1PM Sunday' );
 
 INSERT INTO rooms (name) VALUES
-   ( 'A Suites' ), ( 'B Suites' ), ( 'C Suites' ), ( 'D Suites' );
+( 'A Suites' ), ( 'B Suites' ), ( 'C Suites' ), ( 'Swimming pool' ), ( 'Gym' );
+
+INSERT INTO physician_rooms (physician_id, room_id) VALUES
+( 1, 1 ), ( 1, 2 ), ( 2, 1 ), ( 3, 3 ), ( 4, 4);
+

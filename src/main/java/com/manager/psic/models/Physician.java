@@ -53,6 +53,19 @@ public class Physician {
     @JoinColumn(name = "physician_id")
     private List<Appointment> appointments;
 
+    @JsonIgnore
+    @JsonBackReference
+    @OneToMany(targetEntity = PhysicianRoom.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "physician_id")
+    private List<PhysicianRoom> rooms;
+
+    /*@JsonIgnore
+    @JsonBackReference
+    @OneToOne(targetEntity = Room.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_id", insertable = false, updatable = false)
+    private Room room;*/
+
+
     @NotEmpty(message = "Please provide a consultation time")
     @Column(length = 5)
     private String consultationTime;

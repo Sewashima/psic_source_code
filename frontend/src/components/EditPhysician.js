@@ -33,24 +33,6 @@ const EditPhysician = props => {
         setCurrentPhysician({ ...currentPhysician, [name]: value });
     };
 
-    const updatePublished = status => {
-        var data = {
-            id: currentPhysician.id,
-            title: currentPhysician.title,
-            description: currentPhysician.description,
-            published: status
-        };
-
-        PhysicianDataService.update(currentPhysician.id, data)
-            .then(response => {
-                setCurrentPhysician({ ...currentPhysician, published: status });
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
     const updatePhysician = () => {
         PhysicianDataService.update(currentPhysician.id, currentPhysician)
             .then(response => {
@@ -62,7 +44,7 @@ const EditPhysician = props => {
             });
     };
 
-    const deletePhysician = () => {
+    const addPhysician = () => {
         PhysicianDataService.remove(currentPhysician.id)
             .then(response => {
                 console.log(response.data);
@@ -112,24 +94,8 @@ const EditPhysician = props => {
                         </div>
                     </form>
 
-                    {currentPhysician.published ? (
-                        <button
-                            className="badge badge-primary mr-2"
-                            onClick={() => updatePublished(false)}
-                        >
-                            UnPublish
-                        </button>
-                    ) : (
-                        <button
-                            className="badge badge-primary mr-2"
-                            onClick={() => updatePublished(true)}
-                        >
-                            Publish
-                        </button>
-                    )}
-
-                    <button className="badge badge-danger mr-2" onClick={deletePhysician}>
-                        Delete
+                    <button className="badge badge-secondary mr-2" onClick={addPhysician}>
+                        Add
                     </button>
 
                     <button

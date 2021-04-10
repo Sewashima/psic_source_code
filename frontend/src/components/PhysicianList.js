@@ -40,8 +40,8 @@ const PhysiciansList = () => {
         setCurrentIndex(index);
     };
 
-    const removeAllPhysicians = () => {
-        PhysicianDataService.removeAll()
+    const addPhysician = () => {
+        PhysicianDataService.create()
             .then(response => {
                 console.log(response.data);
                 refreshList();
@@ -103,11 +103,16 @@ const PhysiciansList = () => {
                 </ul>
 
                 <button
-                    className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllPhysicians}
+                    className="m-3 btn btn-sm btn-secondary"
+                    onClick={addPhysician}
                 >
-                    Remove All
+                    Add Physician
                 </button>
+
+
+                <Link to={"/appointment/add"} className="badge badge-info">
+                    Book an Appointment
+                </Link>
             </div>
             <div className="col-md-6">
                 {currentPhysician ? (
