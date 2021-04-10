@@ -97,9 +97,8 @@ const AppointmentsList = () => {
                             onClick={() => setActiveAppointment(appointment, index)}
                             key={index}
                         >
-                            {index + 1} - {appointment.treatmentType.name} ||
-                            ({appointment.patient.firstName} {appointment.patient.lastName}) ||
-                            ({appointment.room} || {utils.dateYMD(appointment.time)})
+                            {index + 1} - ({appointment.patient.firstName} {appointment.patient.lastName})
+                            - {appointment.treatmentType.name} --- {appointment.time}
                         </li>
                     ))}
                 </ul>
@@ -176,12 +175,16 @@ const AppointmentsList = () => {
                             {currentAppointment.status}
                         </div>
 
-                        <Link
-                            to={"/appointments/" + currentAppointment.id}
-                            className="badge badge-warning"
-                        >
-                            Edit
-                        </Link>
+                        {
+                            currentAppointment.status === 'open' ? (
+                                <Link
+                                    to={"/appointments/" + currentAppointment.id}
+                                    className="badge badge-warning"
+                                >
+                                    Edit
+                                </Link>
+                            ): null
+                        }
                     </div>
                 ) : (
                     <div>

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/appointments")
@@ -50,6 +51,16 @@ public class AppointmentController {
         }
         logger.info(String.format("Appointment creation with %s", appointment.toString()));
         return appointmentRepository.save(appointment);
+    }
+
+    @PutMapping("/{id}/cancel")
+    public Optional<Appointment> cancelAppointment(@PathVariable Long id) {
+        logger.info("Appointment cancellation called");
+        Appointment appointment = appointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment", "id", id));
+        appointment.setStatus("cancelled");
+        appointmentRepository.save(appointment);
+        return appointmentRepository.findById(id);
     }
 
     /*@PostMapping("/appointments")

@@ -156,12 +156,12 @@ const PhysiciansList = () => {
                             {utils.dateYMD(currentPhysician.createdAt)}
                         </div>
 
-                        <Link
+                        {/*<Link
                             to={"/physicians/" + currentPhysician.id}
                             className="badge badge-warning"
                         >
                             Edit
-                        </Link>
+                        </Link>*/}
                     </div>
                 ) : (
                     <div>

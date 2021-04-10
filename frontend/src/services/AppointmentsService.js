@@ -18,6 +18,10 @@ const update = (id, data) => {
     return http.put(`${base}/${id}`, data);
 };
 
+const cancel = (id) => {
+    return http.put(`${base}/${id}/cancel`);
+};
+
 const remove = id => {
     return http.delete(`${base}/${id}`);
 };
@@ -36,6 +40,7 @@ export default {
     create,
     update,
     remove,
+    cancel,
     removeAll,
     findByTitle
 };

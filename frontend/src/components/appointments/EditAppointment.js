@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
-import PatientDataService from "../../services/PatientsService";
+import React, {useState, useEffect, Fragment} from "react";
+import AppointmentDataService from "../../services/AppointmentsService";
+import {Link} from "react-router-dom";
+const utils = require('../../utils');
 
-const EditPatient = props => {
-    const initialPatientState = {
-        id: null,
-        title: "",
-        description: "",
-        published: false
-    };
-    const [currentPatient, setCurrentPatient] = useState(initialPatientState);
+const EditAppointment = props => {
+    const [currentAppointment, setCurrentAppointment] = useState(null);
     const [message, setMessage] = useState("");
 
-    const getPatient = id => {
-        console.log('getPatient', {id})
-        PatientDataService.get(id)
+    const getAppointment = id => {
+        console.log('getAppointment', {id});
+        AppointmentDataService.get(id)
             .then(response => {
-                setCurrentPatient(response.data);
-                console.log(response.data);
+                setCurrentAppointment(response.data);
+                console.log({ appointmentFetch: response.data });
             })
             .catch(e => {
                 console.log(e);
@@ -24,49 +20,15 @@ const EditPatient = props => {
     };
 
     useEffect(() => {
-        console.log({ iii: props.match.params })
-        getPatient(props.match.params.id);
+        getAppointment(props.match.params.id);
     }, [props.match.params.id]);
 
-    const handleInputChange = event => {
-        const { name, value } = event.target;
-        setCurrentPatient({ ...currentPatient, [name]: value });
-    };
-
-    const updatePublished = status => {
-        var data = {
-            id: currentPatient.id,
-            title: currentPatient.title,
-            description: currentPatient.description,
-            published: status
-        };
-
-        PatientDataService.update(currentPatient.id, data)
-            .then(response => {
-                setCurrentPatient({ ...currentPatient, published: status });
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
-    const updatePatient = () => {
-        PatientDataService.update(currentPatient.id, currentPatient)
+    const cancelAppointment = () => {
+        console.log('cancel appointment called');
+        AppointmentDataService.cancel(currentAppointment.id)
             .then(response => {
                 console.log(response.data);
-                setMessage("The patient was updated successfully!");
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
-    const deletePatient = () => {
-        PatientDataService.remove(currentPatient.id)
-            .then(response => {
-                console.log(response.data);
-                props.history.push("/patients");
+                props.history.push("/appointments");
             })
             .catch(e => {
                 console.log(e);
@@ -75,80 +37,77 @@ const EditPatient = props => {
 
     return (
         <div>
-            {currentPatient ? (
-                <div className="edit-form">
-                    <h4>Patient</h4>
-                    <form>
-                        <div className="form-group">
-
-                            <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                name="title"
-                                value={currentPatient.title}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="name">Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="name"
-                                name="name"
-                                value={currentPatient.firstName}
-                                // value={`${currentPatient.firstName} ${currentPatient.lastName}`}
-                                onChange={handleInputChange}
-                            />
-                        </div>
-
-                        <div className="form-group">
+            {currentAppointment ? (
+                <Fragment>
+                    <div>
+                        <h4>Appointment</h4>
+                        <div>
                             <label>
-                                <strong>Status:</strong>
-                            </label>
-                            {currentPatient.published ? "Published" : "Pending"}
+                                <strong>Treatment:</strong>
+                            </label>{" "}
+                            {currentAppointment.treatmentType.name || null}
                         </div>
-                    </form>
+                        <div>
+                            <label>
+                                <strong>Physician:</strong>
+                            </label>{" "}
+                            {currentAppointment.physician.firstName} {currentAppointment.physician.lastName}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Room:</strong>
+                            </label>{" "}
+                            {currentAppointment.room}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Time:</strong>
+                            </label>{" "}
+                            {currentAppointment.time}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Booked on:</strong>
+                            </label>{" "}
+                            {utils.dateYMD(currentAppointment.createdAt)}
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Status :</strong>
+                            </label>{" "}
+                            {currentAppointment.status}
+                        </div>
+                    </div>
 
-                    {currentPatient.published ? (
-                        <button
-                            className="badge badge-primary mr-2"
-                            onClick={() => updatePublished(false)}
-                        >
-                            UnPublish
-                        </button>
-                    ) : (
-                        <button
-                            className="badge badge-primary mr-2"
-                            onClick={() => updatePublished(true)}
-                        >
-                            Publish
-                        </button>
-                    )}
+                    <div>
+                        {
+                            currentAppointment.status === 'open' ? (
+                                <button className="badge badge-danger mr-2"
+                                        onClick={() => {
+                                            if (confirm('Are you sure to cancel?')) {
+                                                console.log('confirm truthy')
+                                                cancelAppointment();
+                                            }
+                                        }}>
+                                    Cancel
+                                </button>
+                            ) : null
+                        }
 
-                    <button className="badge badge-danger mr-2" onClick={deletePatient}>
-                        Delete
-                    </button>
+                        <Link to={"/appointments"} className="badge badge-primary mr-2">
+                            Back to Appointments
+                        </Link>
+                    </div>
 
-                    <button
-                        type="submit"
-                        className="badge badge-success"
-                        onClick={updatePatient}
-                    >
-                        Update
-                    </button>
-                    <p>{message}</p>
-                </div>
+                </Fragment>
             ) : (
                 <div>
                     <br />
-                    <p>Please click on a Patient...</p>
+                    <p>No appointment found</p>
                 </div>
             )}
         </div>
     );
 };
 
-export default EditPatient;
+export default EditAppointment;
