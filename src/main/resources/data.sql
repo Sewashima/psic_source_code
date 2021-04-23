@@ -29,6 +29,10 @@ INSERT INTO appointments (patient_id, physician_id, treatment_type_id, reason, t
    ( 2, 2, 2, 'OSTEOPATHY', '3PM Monday', 'B Suites', 'See you then', 'open'),
    ( 3, 3, 1, 'REHABILITATION', '6PM Tuesday', 'C Suites', '', 'attended');
 
+INSERT INTO visitor_appointments (physician_id, treatment_type_id, first_name, last_name, reason, time, room, note, status) VALUES
+   ( 1, 1, 'Tobs', 'Bola', 'PHYSIOTHERAPY', '1PM Sunday', 'A Suites', 'See you then', 'cancelled'),
+   ( 2, 2, 'Ise', 'Isegun', 'OSTEOPATHY', '3PM Monday', 'B Suites', 'See you then', 'open');
+
 INSERT INTO treatment_types (name) VALUES
    ( 'Neural mobilisation' ), ( 'Acupuncture' ), ( 'Massage' ),
    ( 'Mobilisation of the spine and joints' ), ( 'Pool rehabilitation' );
