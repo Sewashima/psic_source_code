@@ -84,10 +84,10 @@ const AppointmentsList = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-6">
+            <div className="col-md-8">
                 <h4>Appointments List</h4>
 
-                <ul className="list-group">
+                {/*<ul className="list-group">
                     {appointments &&
                     appointments.map((appointment, index) => (
                         <li
@@ -101,31 +101,50 @@ const AppointmentsList = () => {
                             - {appointment.treatmentType.name} --- {appointment.time}
                         </li>
                     ))}
-                </ul>
+                </ul>*/}
 
-                {/*<div className="container">
+                {/*<div className="containerMMM">*/}
                     <table className="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Description</th>
-                            <th>Delete</th>
+                            <th>S/N</th>
+                            <th>Patient Name</th>
+                            <th>Treatment Name</th>
+                            <th>Physician Name</th>
+                            <th>Room</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         {appointments && appointments.map((appointment, index) => (
 
-                            <tr key={appointment.id}>
+                            <tr key={appointment.id} onClick={() => setActiveAppointment(appointment, index)}>
                                 <td>{appointment.id}</td>
-                                <td>{appointment.firstName}</td>
-                                <td>{appointment.lastName}</td>
-                                <td><button className="btn btn-info" onClick={() => setActiveAppointment(appointment, index)}>View</button></td>
+                                <td>{appointment.patient.firstName} {appointment.patient.lastName}</td>
+                                <td>{appointment.treatmentType.name}</td>
+                                <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
+                                <td>{appointment.room}</td>
+                                <td>{appointment.time}</td>
+                                <td>{appointment.status}</td>
+                                <td>{
+                                    appointment.status === 'open' ? (
+                                        <Link
+                                            to={"/appointments/" + appointment.id}
+                                            className="badge badge-warning"
+                                        >
+                                            Edit
+                                        </Link>
+                                    ): null
+                                }</td>
+                                {/*<td><button className="btn btn-info" onClick={() => setActiveAppointment(appointment, index)}>View</button></td>*/}
                             </tr>
 
                         ))}
                         </tbody>
                     </table>
-                </div>*/}
+                {/*</div>*/}
 
                 <br/>
                 <Link to={"/appointment/add"} className="badge badge-info">
@@ -135,19 +154,19 @@ const AppointmentsList = () => {
                     Add Appointment
                 </button>*/}
             </div>
-            <div className="col-md-6">
+            <div className="col-md-4">
                 {currentAppointment ? (
                     <div>
                         <h4>Appointment</h4>
                         <div>
                             <label>
-                                <strong>Treatment:</strong>
+                                <strong>Treatment Name:</strong>
                             </label>{" "}
                             {currentAppointment.treatmentType.name}
                         </div>
                         <div>
                             <label>
-                                <strong>Physician:</strong>
+                                <strong>Physician Name:</strong>
                             </label>{" "}
                             {currentAppointment.physician.firstName} {currentAppointment.physician.lastName}
                         </div>

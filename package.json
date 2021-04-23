@@ -6,6 +6,12 @@
   "scripts": {
     "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js"
   },
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:8080",
+      "ws": true
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nyakaz73/spring-boot-reactjs-fullstack.git"
@@ -22,6 +28,7 @@
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
+    "assets-webpack-plugin": "^7.0.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
     "sass-loader": "^10.0.2",
@@ -43,6 +50,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-form": "^8.3.6",
     "redux-thunk": "^2.3.0",
+    "semantic-ui-react": "^2.0.3",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1"
   }

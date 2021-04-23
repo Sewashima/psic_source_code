@@ -33,3 +33,10 @@ build/
 .vscode/
 
 node_modules
+
+.DS_Store
+src/main/.DS_Store
+frontend/.DS_Store
+src/.DS_Store
+src/main/resources/.DS_Store
+

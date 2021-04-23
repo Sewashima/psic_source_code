@@ -1,9 +1,9 @@
-const AddPatient = require('./AddAppointment');
-const EditPatient = require('./EditAppointment');
-const PatientsList = require('./AppointmentList');
+const AddAppointment = require('./AddAppointment');
+const EditAppointment = require('./EditAppointment');
+const AppointmentsList = require('./AppointmentList');
 
 export default {
-    AddPatient,
-    EditPatient,
-    PatientsList
+    AddAppointment,
+    EditAppointment,
+    AppointmentsList
 };

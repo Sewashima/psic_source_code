@@ -59,6 +59,12 @@ public class PhysicianController {
         return ResponseEntity.ok().body(consultationTimeRepository.findByPhysicianId(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Physician>> getPhysicianByName(@RequestParam String name) {
+        log.info("name: "+ name);
+        return ResponseEntity.ok().body(physicianRepository.findByNameIgnoreCase(name.toUpperCase()));
+    }
+
     @PostMapping
     public Physician create(@Valid @RequestBody Physician physician) {
         log.info("physician body" + physician);

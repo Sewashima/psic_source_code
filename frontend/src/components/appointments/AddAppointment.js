@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from "react";
+import { Dropdown } from 'semantic-ui-react'
+
 import AppointmentDataService from "../../services/AppointmentsService";
-import RoomDataService from "../../services/RoomsService";
 import PatientDataService from "../../services/PatientsService";
 import PhysicianDataService from "../../services/PhysiciansService";
 import TreatmentTypeDataService from "../../services/TreatmentTypeService";
@@ -16,6 +17,19 @@ const AddAppointment = () => {
         reason: "",
         treatmentTypeId: ""
     };
+
+    const countryOptions = [
+        { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
+        { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
+        { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
+        { key: 'dz', value: 'dz', flag: 'dz', text: 'Algeria' },
+        { key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
+        { key: 'ad', value: 'ad', flag: 'ad', text: 'Andorra' },
+        { key: 'ao', value: 'ao', flag: 'ao', text: 'Angola' },
+        { key: 'ai', value: 'ai', flag: 'ai', text: 'Anguilla' },
+        { key: 'ag', value: 'ag', flag: 'ag', text: 'Antigua' },
+    ];
+    const [countries, setountries] = useState(countryOptions);
     const [appointment, setAppointment] = useState(initialAppointmentState);
     const [expertise, setExpertise] = useState([]);
     const [consultationTime, setConsultationTime] = useState([]);
@@ -28,23 +42,10 @@ const AddAppointment = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     useEffect(() => {
-        // retrieveRooms();
         retrieveExpertise();
         retrievePatients();
-        // retrievePhysicians();
         retrieveTreatmentTypes();
     }, []);
-
-    const retrieveRooms = () => {
-        RoomDataService.getAll()
-            .then(response => {
-                setRooms(response.data);
-                console.log({ roomsResp: response.data });
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
 
     const retrieveExpertise = () => {
         PhysicianDataService.getExpertise()
@@ -116,9 +117,12 @@ const AddAppointment = () => {
         setAppointment({ ...appointment, [name]: value });
 
         let roomArr = [];
-        const currentPhysician = physicians.find((physician) => physician.id === value);
-        currentPhysician.rooms ? currentPhysician.rooms.map((r) => roomArr.push(r.room)) : [];
-        setRooms(roomArr);
+        let currentPhysician = physicians.find((physician) => physician.id == value);
+        if (currentPhysician) {
+            currentPhysician.rooms ? currentPhysician.rooms.map((r) => roomArr.push(r.room)) : [];
+            console.log({ roomArr })
+            setRooms(roomArr);
+        }
         retrievePhysicianConsultationTime(value);
     };
 
@@ -180,11 +184,24 @@ const AddAppointment = () => {
                     <div>
                         <h4>You submitted successfully!</h4>
                         <button className="btn btn-success" onClick={newAppointment}>
-                            Add
+                            Book another Appointment
                         </button>
                     </div>
                 ) : (
                     <div>
+                        <div className="form-group">
+
+                            <label htmlFor="patient">Countries</label>
+
+                            <Dropdown
+                            placeholder='Select Country'
+                            fluid
+                            search
+                            selection
+                            options={countryOptions}
+                        />
+                        </div>
+
                         <div className="form-group">
                             <label htmlFor="patient">Patient</label>
                             <select className="form-control"
@@ -203,7 +220,7 @@ const AddAppointment = () => {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="reason">Reason</label>
+                            <label htmlFor="reason">Expertise</label>
                             <select className="form-control"
                                     onChange={handleReasonChange}
                                     name="reason"

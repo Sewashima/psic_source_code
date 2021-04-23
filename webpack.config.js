@@ -1,4 +1,6 @@
-var path = require('path');
+const path = require('path');
+// const AssetsPlugin = require('assets-webpack-plugin');
+// const assetsPluginInstance = new AssetsPlugin();
 
 module.exports = {
     entry: './src/main/js/App.js',
@@ -8,7 +10,14 @@ module.exports = {
     output: {
         path: __dirname,
         filename: './src/main/resources/static/built/bundle.js'
+        // filename: './src/main/resources/static/built/[name]-bundle-[hash].js'
     },
+    /*output: {
+        path: path.join(__dirname, "public", "js"),
+        filename: "[name]-bundle-[hash].js",
+        publicPath: "/js/",
+    },*/
+    // plugins: [assetsPluginInstance],
     module: {
         rules: [
             {
