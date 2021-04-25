@@ -17,6 +17,10 @@ import AddAppointment from "./../../../frontend/src/components/appointments/AddA
 import EditAppointment from "./../../../frontend/src/components/appointments/EditAppointment";
 import AppointmentList from "./../../../frontend/src/components/appointments/AppointmentList";
 
+import AddVisitorAppointment from "./../../../frontend/src/components/visitorAppointments/AddVisitorAppointment";
+import EditVisitorAppointment from "./../../../frontend/src/components/visitorAppointments/EditVisitorAppointment";
+import VisitorAppointmentList from "./../../../frontend/src/components/visitorAppointments/VisitorAppointmentList";
+
 // import Patient from './../../../frontend/src/components/patients/index';
 // import { AddPatient, EditPatient, PatientsList } from './../../../frontend/src/components/patients/index';
 
@@ -44,8 +48,8 @@ function App() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/patients"} className="nav-link">
-                            Consultations
+                        <Link to={"/visitor-appointments"} className="nav-link">
+                            Visitor Appointments
                         </Link>
                     </li>
                 </div>
@@ -56,6 +60,10 @@ function App() {
                     <Route exact path={["/", "/appointments"]} component={AppointmentList} />
                     <Route exact path="/appointment/add" component={AddAppointment} />
                     <Route path="/appointments/:id" component={EditAppointment} />
+
+                    <Route exact path="/visitor-appointments" component={VisitorAppointmentList} />
+                    <Route exact path="/visitor-appointment/add" component={AddVisitorAppointment} />
+                    <Route path="/visitor-appointments/:id" component={EditVisitorAppointment} />
 
                     <Route exact path="/physicians" component={PhysiciansList} />
                     <Route exact path="/physician/add" component={AddPhysician} />

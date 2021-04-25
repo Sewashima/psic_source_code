@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/visitorVisitorAppointments")
+@RequestMapping("/api/visitor-appointments")
 public class VisitorAppointmentController {
 
     private final Logger logger = LoggerFactory.getLogger(VisitorAppointmentController.class);
