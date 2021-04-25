@@ -21,6 +21,8 @@ import AddVisitorAppointment from "./../../../frontend/src/components/visitorApp
 import EditVisitorAppointment from "./../../../frontend/src/components/visitorAppointments/EditVisitorAppointment";
 import VisitorAppointmentList from "./../../../frontend/src/components/visitorAppointments/VisitorAppointmentList";
 
+import ReportsList from "./../../../frontend/src/components/reports/ReportList";
+
 // import Patient from './../../../frontend/src/components/patients/index';
 // import { AddPatient, EditPatient, PatientsList } from './../../../frontend/src/components/patients/index';
 
@@ -34,7 +36,12 @@ function App() {
                 <div className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <Link to={"/appointments"} className="nav-link">
-                            Appointments
+                            Treatment Appointments
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to={"/visitor-appointments"} className="nav-link">
+                            Visitor Appointments
                         </Link>
                     </li>
                     <li className="nav-item">
@@ -48,8 +55,8 @@ function App() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link to={"/visitor-appointments"} className="nav-link">
-                            Visitor Appointments
+                        <Link to={"/reports"} className="nav-link">
+                            Reports
                         </Link>
                     </li>
                 </div>
@@ -72,6 +79,8 @@ function App() {
                     <Route exact path="/patients" component={PatientsList} />
                     <Route exact path="/patient/add" component={AddPatient} />
                     <Route path="/patients/:id" component={EditPatient} />
+
+                    <Route exact path="/reports" component={ReportsList} />
                 </Switch>
             </div>
         </div>

@@ -84,7 +84,7 @@ const VisitorAppointmentsList = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-8">
+            <div className="col-md-12">
                 <h4>VisitorAppointments List</h4>
 
                 {/*<ul className="list-group">
@@ -154,7 +154,7 @@ const VisitorAppointmentsList = () => {
                     Add VisitorAppointment
                 </button>*/}
             </div>
-            <div className="col-md-4">
+            {/*<div className="col-md-4">
                 {currentVisitorAppointment ? (
                     <div>
                         <h4>VisitorAppointment</h4>
@@ -212,7 +212,7 @@ const VisitorAppointmentsList = () => {
                         <p>Please click on a VisitorAppointment to view...</p>
                     </div>
                 )}
-            </div>
+            </div>*/}
         </div>
     );
 };

@@ -189,7 +189,7 @@ const AddAppointment = () => {
                     </div>
                 ) : (
                     <div>
-                        <div className="form-group">
+                        {/*<div className="form-group">
 
                             <label htmlFor="patient">Countries</label>
 
@@ -200,7 +200,7 @@ const AddAppointment = () => {
                             selection
                             options={countryOptions}
                         />
-                        </div>
+                        </div>*/}
 
                         <div className="form-group">
                             <label htmlFor="patient">Patient</label>

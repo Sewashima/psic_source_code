@@ -40,17 +40,6 @@ const PatientsList = () => {
         setCurrentIndex(index);
     };
 
-    const removeAllPatients = () => {
-        PatientDataService.removeAll()
-            .then(response => {
-                console.log(response.data);
-                refreshList();
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    };
-
     const findByTitle = () => {
         PatientDataService.findByTitle(searchTitle)
             .then(response => {
@@ -126,12 +115,6 @@ const PatientsList = () => {
                     </table>
                 </div>*/}
 
-                <button
-                    className="m-3 btn btn-sm btn-danger"
-                    onClick={removeAllPatients}
-                >
-                    Remove All
-                </button>
             </div>
             <div className="col-md-6">
                 {currentPatient ? (

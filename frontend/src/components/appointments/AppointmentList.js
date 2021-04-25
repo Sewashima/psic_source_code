@@ -84,8 +84,8 @@ const AppointmentsList = () => {
                     </div>
                 </div>
             </div>
-            <div className="col-md-8">
-                <h4>Appointments List</h4>
+            <div className="col-md-12">
+                <h4>Treatment Appointments List</h4>
 
                 {/*<ul className="list-group">
                     {appointments &&
@@ -148,13 +148,13 @@ const AppointmentsList = () => {
 
                 <br/>
                 <Link to={"/appointment/add"} className="badge badge-info">
-                    Book an Appointment
+                    Book a Treatment Appointment
                 </Link>
                 {/*<button className="m-3 btn btn-sm btn-primary" onClick={createAppointment}>
                     Add Appointment
                 </button>*/}
             </div>
-            <div className="col-md-4">
+            {/*<div className="col-md-4">
                 {currentAppointment ? (
                     <div>
                         <h4>Appointment</h4>
@@ -212,7 +212,7 @@ const AppointmentsList = () => {
                         <p>Please click on a Appointment to view...</p>
                     </div>
                 )}
-            </div>
+            </div>*/}
         </div>
     );
 };

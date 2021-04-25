@@ -109,10 +109,9 @@ const PhysiciansList = () => {
                     Add Physician
                 </button>
 
-
-                <Link to={"/appointment/add"} className="badge badge-info">
+                {/*<Link to={"/appointment/add"} className="badge badge-info">
                     Book an Appointment
-                </Link>
+                </Link>*/}
             </div>
             <div className="col-md-6">
                 {currentPhysician ? (
