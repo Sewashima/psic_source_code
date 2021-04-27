@@ -28,7 +28,7 @@ const EditVisitorAppointment = props => {
         AppointmentDataService.cancel(currentAppointment.id)
             .then(response => {
                 console.log(response.data);
-                props.history.push("/appointments");
+                props.history.push("/visitor-appointments");
             })
             .catch(e => {
                 console.log(e);
@@ -85,7 +85,6 @@ const EditVisitorAppointment = props => {
                                 <button className="badge badge-danger mr-2"
                                         onClick={() => {
                                             if (confirm('Are you sure to cancel?')) {
-                                                console.log('confirm truthy')
                                                 cancelAppointment();
                                             }
                                         }}>
@@ -94,8 +93,8 @@ const EditVisitorAppointment = props => {
                             ) : null
                         }
 
-                        <Link to={"/appointments"} className="badge badge-primary mr-2">
-                            Back to Appointments
+                        <Link to={"/visitor-appointments"} className="badge badge-primary mr-2">
+                            Back to Visitor Appointments
                         </Link>
                     </div>
 
