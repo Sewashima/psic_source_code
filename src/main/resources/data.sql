@@ -83,8 +83,11 @@ INSERT INTO consultation_times (physician_id, time) VALUES
    ( 5, '8PM Wednesday 27-May-2021' );
                                   
 INSERT INTO rooms (name) VALUES
-( 'A Suites' ), ( 'B Suites' ), ( 'C Suites' ), ( 'Swimming pool' ), ( 'Gym' );
+( 'Consulting Suites A' ), ( 'Consulting Suites B' ), ( 'Consulting Suites C' ), ( 'Swimming pool' ), ( 'Gym' );
 
 INSERT INTO physician_rooms (physician_id, room_id) VALUES
 ( 1, 1 ), ( 1, 2 ), ( 2, 1 ), ( 3, 3 ), ( 4, 4);
+
+INSERT INTO expertise (id, name, created_at, updated_at) VALUES
+( 1, "PHYSIOTHERAPY" ), ( 2, "OSTEOPATHY" ), ( 3, "REHABILITATION" );
 

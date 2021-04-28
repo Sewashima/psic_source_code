@@ -1,14 +1,24 @@
 package com.example.mavenreactjsspringboot.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public enum Expertise {
-    @JsonProperty("Physiotherapy")
-    PHYSIOTHERAPY,
+import javax.persistence.*;
+import java.util.Date;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "expertise")
+public class Expertise {
 
-    @JsonProperty("Osteopathy")
-    OSTEOPATHY,
-
-    @JsonProperty("Rehabilitation")
-    REHABILITATION
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "name")
+    private String name;
+    @Column(name = "created_at")
+    private Date createdAt;
+    private Date updatedAt;
 }
