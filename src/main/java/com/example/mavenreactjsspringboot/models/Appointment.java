@@ -32,7 +32,7 @@ public class Appointment {
     @NotEmpty(message = "Please provide a room")
     private String room;
 
-    @NotEmpty(message = "Please supply a note")
+//    @NotEmpty(message = "Please supply a note")
     private String note;
 
     @JsonBackReference

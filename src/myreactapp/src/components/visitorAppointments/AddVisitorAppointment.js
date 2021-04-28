@@ -4,6 +4,7 @@ import { Dropdown } from 'semantic-ui-react'
 import AppointmentDataService from "../../services/VisitorAppointmentsService";
 import PatientDataService from "../../services/PatientsService";
 import PhysicianDataService from "../../services/PhysiciansService";
+import ExpertiseDataService from "../../services/ExpertiseService";
 import TreatmentTypeDataService from "../../services/TreatmentTypeService";
 
 const AddVisitorAppointment = () => {
@@ -13,7 +14,6 @@ const AddVisitorAppointment = () => {
         lastName: "",
         room: "",
         time: "",
-        note: "",
         physicianId: "",
         reason: "",
         treatmentTypeId: ""
@@ -35,7 +35,7 @@ const AddVisitorAppointment = () => {
     }, []);
 
     const retrieveExpertise = () => {
-        PhysicianDataService.getExpertise()
+        ExpertiseDataService.getAll()
             .then(response => {
                 setExpertise(response.data);
                 console.log({ expertisesResp: response.data });
@@ -162,7 +162,7 @@ const AddVisitorAppointment = () => {
                     <div>
                         <h4>You submitted successfully!</h4>
                         <button className="btn btn-success" onClick={newAppointment}>
-                            Book another Appointment
+                            Book another Visitor Appointment
                         </button>
                     </div>
                 ) : (
@@ -202,8 +202,8 @@ const AddVisitorAppointment = () => {
                                     value={appointment.reason}>
                                 <option value=""> Select... </option>
                                 {
-                                    expertise.map((reason, index) => (
-                                        <option key={index} value={reason}>{reason}</option> )
+                                    expertise.map((options, index) => (
+                                        <option key={index} value={options.id}>{options.name}</option> )
                                     )
                                 }
                             </select>
@@ -266,18 +266,6 @@ const AddVisitorAppointment = () => {
                                     )
                                 }
                             </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="description">Note</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="note"
-                                value={appointment.note}
-                                onChange={handleInputChange}
-                                name="note"
-                            />
                         </div>
 
                         <button onClick={saveAppointment} className="btn btn-success">

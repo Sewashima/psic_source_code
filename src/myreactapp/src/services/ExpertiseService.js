@@ -1,22 +1,9 @@
 import http from "../http-common";
 
-const base = '/physicians';
+const base = '/expertise';
 
 const getAll = () => {
     return http.get(`${base}`);
-};
-
-const getExpertise = () => {
-    return http.get(`${base}/expertise`);
-};
-
-const getPhysicianByExpertise = (id) => {
-    console.log({ id })
-    return http.get(`${base}/expertise/${id}`);
-};
-
-const getPhysicianConsultationTime = (id) => {
-    return http.get(`${base}/${id}/consultation-times`);
 };
 
 const get = id => {
@@ -40,7 +27,7 @@ const removeAll = () => {
 };
 
 const findByTitle = name => {
-    return http.get(`${base}?name=${title}`);
+    return http.get(`${base}?name=${name}`);
 };
 
 export default {
@@ -50,8 +37,5 @@ export default {
     update,
     remove,
     removeAll,
-    findByTitle,
-    getExpertise,
-    getPhysicianByExpertise,
-    getPhysicianConsultationTime,
+    findByTitle
 };

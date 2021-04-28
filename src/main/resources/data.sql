@@ -92,4 +92,4 @@ INSERT INTO expertise (id, name) VALUES
 ( 1, 'Physiotherapy' ), ( 2, 'Osteopathy' ), ( 3, 'Rehabilitation' );
 
 INSERT INTO physician_expertise (physician_id, expertise_id) VALUES
-( 1, 1 ), ( 1, 1 ), ( 1, 3 ), ( 2, 2 ), ( 2, 3 ), ( 3, 1), ( 4, 3), ( 5, 1);
+( 1, 1 ), ( 1, 2 ), ( 1, 3 ), ( 2, 2 ), ( 2, 3 ), ( 3, 1), ( 3, 4), ( 4, 3), ( 5, 1);

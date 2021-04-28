@@ -80,7 +80,6 @@ public class Physician {
     @JoinColumn(name = "room_id", insertable = false, updatable = false)
     private Room room;*/
 
-
     @NotEmpty(message = "Please provide a consultation time")
     @Column(length = 5)
     private String consultationTime;

@@ -53,13 +53,8 @@ public class PhysicianController {
         return ResponseEntity.ok().body(expertiseList);
     }
 
-    @GetMapping("/expertise/{expertise}")
-    public ResponseEntity<List<Physician>> getPhysiciansByExpertise(@PathVariable Long expertise) {
-        return ResponseEntity.ok().body(physicianRepository.findByExpertiseId(expertise));
-    }
-
     @GetMapping("/expertise/{id}")
-    public ResponseEntity<List<Physician>> getPhysicianByExpertise(@RequestParam Long id) {
+    public ResponseEntity<List<Physician>> getPhysicianByExpertise(@PathVariable Long id) {
         log.info("Expertise ID: "+ id);
         return ResponseEntity.ok().body(physicianRepository.findByExpertiseId(id));
     }

@@ -4,6 +4,7 @@ import React, {Fragment, useEffect, useState} from "react";
 import AppointmentDataService from "../../services/AppointmentsService";
 import PatientDataService from "../../services/PatientsService";
 import PhysicianDataService from "../../services/PhysiciansService";
+import ExpertiseDataService from "../../services/ExpertiseService";
 import TreatmentTypeDataService from "../../services/TreatmentTypeService";
 
 const AddAppointment = () => {
@@ -18,17 +19,6 @@ const AddAppointment = () => {
         treatmentTypeId: ""
     };
 
-    const countryOptions = [
-        { key: 'af', value: 'af', flag: 'af', text: 'Afghanistan' },
-        { key: 'ax', value: 'ax', flag: 'ax', text: 'Aland Islands' },
-        { key: 'al', value: 'al', flag: 'al', text: 'Albania' },
-        { key: 'dz', value: 'dz', flag: 'dz', text: 'Algeria' },
-        { key: 'as', value: 'as', flag: 'as', text: 'American Samoa' },
-        { key: 'ad', value: 'ad', flag: 'ad', text: 'Andorra' },
-        { key: 'ao', value: 'ao', flag: 'ao', text: 'Angola' },
-        { key: 'ai', value: 'ai', flag: 'ai', text: 'Anguilla' },
-        { key: 'ag', value: 'ag', flag: 'ag', text: 'Antigua' },
-    ];
     const [appointment, setAppointment] = useState(initialAppointmentState);
     const [expertise, setExpertise] = useState([]);
     const [consultationTime, setConsultationTime] = useState([]);
@@ -47,7 +37,7 @@ const AddAppointment = () => {
     }, []);
 
     const retrieveExpertise = () => {
-        PhysicianDataService.getExpertise()
+        ExpertiseDataService.getAll()
             .then(response => {
                 setExpertise(response.data);
                 console.log({ expertisesResp: response.data });
@@ -68,9 +58,9 @@ const AddAppointment = () => {
             });
     };
 
-    const retrievePhysicianByExpertise = (name) => {
-        console.log('retrievePhysicianByExpertise called: ', { name })
-        PhysicianDataService.getPhysicianByExpertise(name)
+    const retrievePhysicianByExpertise = (expertiseId) => {
+        console.log('retrievePhysicianByExpertise called: ', { expertiseId })
+        PhysicianDataService.getPhysicianByExpertise(expertiseId)
             .then(response => {
                 setPhysicians(response.data);
                 console.log({ physiciansExpertiseResp: response.data });
@@ -226,8 +216,8 @@ const AddAppointment = () => {
                                     value={appointment.reason}>
                                 <option value=""> Select... </option>
                                 {
-                                    expertise.map((reason, index) => (
-                                        <option key={index} value={reason}>{reason}</option> )
+                                    expertise.map((options, index) => (
+                                        <option key={index} value={options.id}>{options.name}</option> )
                                     )
                                 }
                             </select>
