@@ -1,10 +1,10 @@
 -- CREATE DATABASE hms IF NOT EXISTS;
-INSERT INTO physicians (title, first_name, last_name, address, phone_number, expertise, consultation_time, created_at, updated_at) VALUES
-  ('Mr', 'Physician', 'First', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Monday', '2021-03-01', '2021-03-01'),
-  ('Mrs', 'Sade', 'Ridwan', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Tuesday', '2021-03-01', '2021-03-01'),
-  ('Mr', 'John', 'Sam', 'Lagos State, Nigeria', '08130167617', 'OSTEOPATHY', 'Wednesday', '2021-03-01', '2021-03-01'),
-  ('Mrs', 'Sam', 'Alladyce', 'Lagos State, Nigeria', '08130167617', 'PHYSIOTHERAPY', 'Thursday', '2021-03-01', '2021-03-01'),
-  ('Mr', 'Johnson', 'Fergie', 'Lagos State, Nigeria', '08130167617', 'REHABILITATION', 'Friday', '2021-03-01', '2021-03-01');
+INSERT INTO physicians (title, first_name, last_name, address, phone_number, consultation_time, created_at, updated_at) VALUES
+  ('Mr', 'Physician', 'First', 'Lagos State, Nigeria', '08130167617', 'Monday', '2021-03-01', '2021-03-01'),
+  ('Mrs', 'Sade', 'Ridwan', 'Lagos State, Nigeria', '08130167617', 'Tuesday', '2021-03-01', '2021-03-01'),
+  ('Mr', 'John', 'Sam', 'Lagos State, Nigeria', '08130167617', 'Wednesday', '2021-03-01', '2021-03-01'),
+  ('Mrs', 'Sam', 'Alladyce', 'Lagos State, Nigeria', '08130167617', 'Thursday', '2021-03-01', '2021-03-01'),
+  ('Mr', 'Johnson', 'Fergie', 'Lagos State, Nigeria', '08130167617', 'Friday', '2021-03-01', '2021-03-01');
 
 INSERT INTO patients (title, first_name, last_name, age, phone_number, address) VALUES
     ('Mr.', 'Patient', 'Tunde', 24, '08130167617', 'Lagos, Nigeria'),
@@ -88,6 +88,8 @@ INSERT INTO rooms (name) VALUES
 INSERT INTO physician_rooms (physician_id, room_id) VALUES
 ( 1, 1 ), ( 1, 2 ), ( 2, 1 ), ( 3, 3 ), ( 4, 4);
 
-INSERT INTO expertise (id, name, created_at, updated_at) VALUES
-( 1, "PHYSIOTHERAPY" ), ( 2, "OSTEOPATHY" ), ( 3, "REHABILITATION" );
+INSERT INTO expertise (id, name) VALUES
+( 1, 'Physiotherapy' ), ( 2, 'Osteopathy' ), ( 3, 'Rehabilitation' );
 
+INSERT INTO physician_expertise (physician_id, expertise_id) VALUES
+( 1, 1 ), ( 1, 1 ), ( 1, 3 ), ( 2, 2 ), ( 2, 3 ), ( 3, 1), ( 4, 3), ( 5, 1);

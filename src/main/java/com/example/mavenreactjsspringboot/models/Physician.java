@@ -57,9 +57,22 @@ public class Physician {
 
     @JsonIgnore
     @JsonBackReference
+    @OneToOne(targetEntity = TreatmentType.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "treatment_type_id", insertable = false, updatable = false)
+    private TreatmentType treatmentType;
+
+    @JsonIgnore
+    @JsonBackReference
     @OneToMany(targetEntity = PhysicianRoom.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "physician_id")
     private List<PhysicianRoom> rooms;
+
+    @JsonIgnore
+    @JsonBackReference
+//    @OneToMany(mappedBy = "physician", fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = PhysicianExpertise.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "physician_id")
+    private List<PhysicianExpertise> expertise;
 
     /*@JsonIgnore
     @JsonBackReference
@@ -72,9 +85,9 @@ public class Physician {
     @Column(length = 5)
     private String consultationTime;
 
-//    @Enumerated(EnumType.STRING)
-    @Column(name = "expertise")
-    @NotNull(message = "Expertise must not be null and of the type Physio, Osteo, or Rehab")
-//    private Expertise expertise;
-    private String expertise;
+////    @Enumerated(EnumType.STRING)
+//    @Column(name = "expertise")
+//    @NotNull(message = "Expertise must not be null and of the type Physio, Osteo, or Rehab")
+////    private Expertise expertise;
+//    private String expertise;
 }
