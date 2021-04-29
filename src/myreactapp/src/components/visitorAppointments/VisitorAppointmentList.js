@@ -62,6 +62,14 @@ const VisitorAppointmentsList = () => {
             });
     };
 
+    const parseRoom = (roomTime, first = false) => {
+        const part = first ? 0 : 1;
+        if (roomTime) {
+            const room = roomTime.split('(')[part];
+            return room.substring(0, room.length - 1);
+        }
+    };
+
     return (
         <div className="list row">
             <div className="col-md-8">
@@ -87,22 +95,6 @@ const VisitorAppointmentsList = () => {
             <div className="col-md-12">
                 <h4>VisitorAppointments List</h4>
 
-                {/*<ul className="list-group">
-                    {appointments &&
-                    appointments.map((appointment, index) => (
-                        <li
-                            className={
-                                "list-group-item " + (index === currentIndex ? "active" : "")
-                            }
-                            onClick={() => setActiveVisitorAppointment(appointment, index)}
-                            key={index}
-                        >
-                            {index + 1} - ({appointment.patient.firstName} {appointment.patient.lastName})
-                            - {appointment.treatmentType.name} --- {appointment.time}
-                        </li>
-                    ))}
-                </ul>*/}
-
                 {/*<div className="containerMMM">*/}
                     <table className="table table-bordered table-striped">
                         <thead>
@@ -111,8 +103,8 @@ const VisitorAppointmentsList = () => {
                             <th>Visitor's Name</th>
                             <th>Treatment Name</th>
                             <th>Physician Name</th>
-                            {/*<th>Room</th>*/}
                             <th>Time</th>
+                            <th>Room</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -126,7 +118,8 @@ const VisitorAppointmentsList = () => {
                                 <td>{appointment.treatmentType.name}</td>
                                 <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
                                 {/*<td>{appointment.room}</td>*/}
-                                <td>{appointment.time}</td>
+                                <td>{ parseRoom(appointment.time, true) }</td>
+                                <td>{ parseRoom(appointment.time) }</td>
                                 <td>{appointment.status}</td>
                                 <td>{
                                     appointment.status === 'open' ? (

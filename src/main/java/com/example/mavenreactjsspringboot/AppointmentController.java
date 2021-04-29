@@ -64,6 +64,16 @@ public class AppointmentController {
         return appointmentRepository.findById(id);
     }
 
+    @PutMapping("/{id}/attend")
+    public Optional<Appointment> attendAppointment(@PathVariable Long id) {
+        logger.info("Appointment attend called");
+        Appointment appointment = appointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Appointment", "id", id));
+        appointment.setStatus("attended");
+        appointmentRepository.save(appointment);
+        return appointmentRepository.findById(id);
+    }
+
     /*@PostMapping("/appointments")
     private ResponseEntity<Appointment> createAppointment(Appointment appointment) {
 //        Appointment appointment1 = new Appointment(appointment.getNote(), appointment.getRoom());

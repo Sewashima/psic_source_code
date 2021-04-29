@@ -64,4 +64,14 @@ public class VisitorAppointmentController {
         return visitorAppointmentRepository.findById(id);
     }
 
+    @PutMapping("/{id}/attend")
+    public Optional<VisitorAppointment> attendVisitorAppointment(@PathVariable Long id) {
+        logger.info("VisitorAppointment attended called");
+        VisitorAppointment visitorVisitorAppointment = visitorAppointmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("VisitorAppointment", "id", id));
+        visitorVisitorAppointment.setStatus("attended");
+        visitorAppointmentRepository.save(visitorVisitorAppointment);
+        return visitorAppointmentRepository.findById(id);
+    }
+
 }

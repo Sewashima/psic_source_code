@@ -40,6 +40,14 @@ const ReportList = () => {
             });
     };
 
+    const parseRoom = (roomTime, first = false) => {
+        const part = first ? 0 : 1;
+        if (roomTime) {
+            const room = roomTime.split('(')[part];
+            return room.substring(0, room.length - 1);
+        }
+    };
+
     const refreshList = () => {
         retrieveVisitorAppointments();
         retrieveTreatmentAppointments();
@@ -69,8 +77,8 @@ const ReportList = () => {
                             <th>Patient Name</th>
                             <th>Treatment Name</th>
                             <th>Physician Name</th>
-                            {/*<th>Room</th>*/}
-                            <th>Time & Room</th>
+                            <th>Time</th>
+                            <th>Room</th>
                             <th>Status</th>
                             {/*<th></th>*/}
                         </tr>
@@ -84,7 +92,8 @@ const ReportList = () => {
                                 <td>{appointment.treatmentType.name}</td>
                                 <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
                                 {/*<td>{appointment.room}</td>*/}
-                                <td>{appointment.time}</td>
+                                <td>{ parseRoom(appointment.time, true) }</td>
+                                <td>{ parseRoom(appointment.time) }</td>
                                 <td>{appointment.status}</td>
                                 {/*<td>{
                                     appointment.status === 'open' ? (
@@ -126,7 +135,8 @@ const ReportList = () => {
                         <th>Treatment Name</th>
                         <th>Physician Name</th>
                         {/*<th>Room</th>*/}
-                        <th>Time & Room</th>
+                        <th>Time</th>
+                        <th>Room</th>
                         <th>Status</th>
                         {/*<th></th>*/}
                     </tr>
@@ -139,8 +149,8 @@ const ReportList = () => {
                             <td>{appointment.firstName} {appointment.lastName}</td>
                             <td>{appointment.treatmentType.name}</td>
                             <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
-                            {/*<td>{appointment.room}</td>*/}
-                            <td>{appointment.time}</td>
+                            <td>{ parseRoom(appointment.time, true) }</td>
+                            <td>{ parseRoom(appointment.time) }</td>
                             <td>{appointment.status}</td>
                             {/*<td>{
                                 appointment.status === 'open' ? (

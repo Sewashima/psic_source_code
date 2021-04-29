@@ -63,6 +63,14 @@ const PhysiciansList = () => {
             });
     };
 
+    const parseRoom = (roomTime, first = false) => {
+        const part = first ? 0 : 1;
+        if (roomTime) {
+            const room = roomTime.split('(')[part];
+            return room.substring(0, room.length - 1);
+        }
+    };
+
     return (
         <div className="list row">
             <div className="col-md-8">
@@ -92,9 +100,7 @@ const PhysiciansList = () => {
                     {physicians &&
                     physicians.map((physician, index) => (
                         <li
-                            className={
-                                "list-group-item " + (index === currentIndex ? "active" : "")
-                            }
+                            className={"list-group-item " + (index === currentIndex ? "active" : "")}
                             onClick={() => setActivePhysician(physician, index)}
                             key={index}
                         >
@@ -118,41 +124,32 @@ const PhysiciansList = () => {
                 {currentPhysician ? (
                     <div>
                         <h4>Physician</h4>
-                        <div>
+                        {/*<div>
                             <label>
                                 <strong>Title:</strong>
                             </label>{" "}
                             {currentPhysician.title}
-                        </div>
+                        </div>*/}
                         <div>
                             <label>
                                 <strong>Name:</strong>
                             </label>{" "}
-                            {currentPhysician.firstName} {currentPhysician.lastName}
+                            {currentPhysician.title}. {currentPhysician.firstName} {currentPhysician.lastName}
                         </div>
                         <div>
                             <label>
                                 <strong>Expertise:</strong>
                             </label>{" "}
                             {
-                                currentPhysician.expertise.map((exp) => {
-                                    exp.expertise.name
-                                })
-                            }
-
-                            {
                                 <ul className="list-group">
                                     {currentPhysician &&
                                         currentPhysician.expertise.map((exp, index) => (
-                                            <li
-                                                className={"list-group-item "}
-                                                key={index}
-                                            >
-                                                {index + 1} - ({exp.expertise.name}
+                                            <li className={"list-group-item"} key={index}>
+                                                {index + 1} - {exp.expertise.name}
                                             </li>
                                         ))
                                     }
-                            </ul>
+                                </ul>
                             }
 
                         </div>
@@ -166,7 +163,13 @@ const PhysiciansList = () => {
                             <label>
                                 <strong>Consultation Time:</strong>
                             </label>{" "}
-                            {currentPhysician.consultationTime}
+                            { parseRoom(currentPhysician.consultationTime, true) }
+                        </div>
+                        <div>
+                            <label>
+                                <strong>Room:</strong>
+                            </label>{" "}
+                            { parseRoom(currentPhysician.consultationTime) }
                         </div>
                         <div>
                             <label>

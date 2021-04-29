@@ -36,6 +36,26 @@ const EditAppointment = props => {
             });
     };
 
+    const attendAppointment = () => {
+        console.log('attend appointment called');
+        AppointmentDataService.cancel(currentAppointment.id)
+            .then(response => {
+                console.log(response.data);
+                props.history.push("/appointments");
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const parseRoom = (roomTime, first = false) => {
+        const part = first ? 0 : 1;
+        if (roomTime) {
+            const room = roomTime.split('(')[part];
+            return room.substring(0, room.length - 1);
+        }
+    };
+
     return (
         <div>
             {currentAppointment ? (
@@ -58,13 +78,13 @@ const EditAppointment = props => {
                             <label>
                                 <strong>Room:</strong>
                             </label>{" "}
-                            {currentAppointment.room}
+                            { parseRoom(currentAppointment.time) }
                         </div>
                         <div>
                             <label>
                                 <strong>Time:</strong>
                             </label>{" "}
-                            {currentAppointment.time}
+                            { parseRoom(currentAppointment.time, true) }
                         </div>
                         <div>
                             <label>
@@ -83,15 +103,25 @@ const EditAppointment = props => {
                     <div>
                         {
                             currentAppointment.status === 'open' ? (
-                                <button className="badge badge-danger mr-2"
-                                        onClick={() => {
-                                            if (confirm('Are you sure to cancel?')) {
-                                                console.log('confirm truthy')
-                                                cancelAppointment();
-                                            }
-                                        }}>
-                                    Cancel
-                                </button>
+                                <div>
+                                    <button className="badge badge-danger mr-2"
+                                            onClick={() => {
+                                                if (confirm('Are you sure to cancel?')) {
+                                                    cancelAppointment();
+                                                }
+                                            }}>
+                                        Cancel
+                                    </button>
+
+                                    <button className="badge badge-info mr-2"
+                                            onClick={() => {
+                                                if (confirm('Sure this was attended?')) {
+                                                    attendAppointment();
+                                                }
+                                            }}>
+                                        Attend
+                                    </button>
+                                </div>
                             ) : null
                         }
 

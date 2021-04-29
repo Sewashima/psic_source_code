@@ -25,8 +25,8 @@ INSERT INTO patients (title, first_name, last_name, age, phone_number, address) 
 
 INSERT INTO appointments (patient_id, physician_id, treatment_type_id, reason, time, note, status) VALUES
    ( 1, 1, 1, 'PHYSIOTHERAPY', '2PM Monday 01-May-2021 (A Suites)', 'See you then', 'cancelled'),
-   ( 2, 2, 2, 'OSTEOPATHY', '6PM Wednesday 01-May-2021, (B Suites)', 'See you then', 'open'),
-   ( 3, 3, 1, 'REHABILITATION', '7PM Friday 01-May-2021, (C Suites)', '', 'attended');
+   ( 2, 2, 2, 'OSTEOPATHY', '6PM Wednesday 01-May-2021 (B Suites)', 'See you then', 'open'),
+   ( 3, 3, 1, 'REHABILITATION', '7PM Friday 01-May-2021 (C Suites)', '', 'attended');
 
 INSERT INTO visitor_appointments (physician_id, treatment_type_id, first_name, last_name, reason, time, status) VALUES
    ( 1, 1, 'Tobs', 'Bola', 'PHYSIOTHERAPY', '12PM Saturday 01-May-2021 (A Suites)', 'cancelled'),

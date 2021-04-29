@@ -22,6 +22,10 @@ const cancel = (id) => {
     return http.put(`${base}/${id}/cancel`);
 };
 
+const attend = (id) => {
+    return http.put(`${base}/${id}/attend`);
+};
+
 const remove = id => {
     return http.delete(`${base}/${id}`);
 };
@@ -41,6 +45,7 @@ export default {
     update,
     remove,
     cancel,
+    attend,
     removeAll,
     findByTitle
 };
