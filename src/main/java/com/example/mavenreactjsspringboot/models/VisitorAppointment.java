@@ -27,10 +27,10 @@ public class VisitorAppointment {
     @NotNull(message = "please provide a time")
     private String time;
 
-    @NotEmpty(message = "Please provide a reason")
+    @NotEmpty(message = "Please provide an expertise")
     private String reason;
 
-    @NotEmpty(message = "Please provide a room")
+//    @NotEmpty(message = "Please provide a room")
     private String room;
 
 //    @NotEmpty(message = "Please supply a note")
@@ -45,12 +45,12 @@ public class VisitorAppointment {
     @Column(name = "physician_id")
     private Long physicianId;
 
-    @NotEmpty(message = "first name must be provided")
-    @Size(min = 3, max = 30, message = "min of 3 and max of 30 characters")
+    @NotEmpty(message = " - Note must be provided - ")
+    @Size(min = 3, max = 30, message = " - min. of 3 and max of 30 characters for Note - ")
     private String firstName;
 
-    @NotEmpty(message = "last name must be provided")
-    @Size(min = 3, max = 30, message = "min of 3 and max of 30 characters")
+//    @NotEmpty(message = "last name must be provided")
+//    @Size(min = 3, max = 30, message = "min of 3 and max of 30 characters")
     private String lastName;
 
     @JsonIgnore
@@ -59,7 +59,7 @@ public class VisitorAppointment {
     @JoinColumn(name = "treatment_type_id", insertable = false, updatable = false)
     private TreatmentType treatmentType;
 
-    @NotNull(message = "Please provide a treatment type")
+    @NotNull(message = " - Please provide a treatment type - ")
     @Column(name = "treatment_type_id")
     private Long treatmentTypeId;
 

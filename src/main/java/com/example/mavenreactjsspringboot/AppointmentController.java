@@ -45,11 +45,11 @@ public class AppointmentController {
     @PostMapping
     public Appointment createAppointment(@Valid @RequestBody Appointment appointment) {
         logger.info("Appointment create called");
-        String note = appointment.getNote();
+        /*String note = appointment.getNote();
         if (note.isEmpty()) {
             logger.debug("Note is empty and shouldn't be");
 //            throw new ResourceNotFoundException()
-        }
+        }*/
         logger.info(String.format("Appointment creation with %s", appointment.toString()));
         return appointmentRepository.save(appointment);
     }

@@ -108,10 +108,10 @@ const VisitorAppointmentsList = () => {
                         <thead>
                         <tr>
                             <th>S/N</th>
-                            <th>Patient Name</th>
+                            <th>Visitor's Name</th>
                             <th>Treatment Name</th>
                             <th>Physician Name</th>
-                            <th>Room</th>
+                            {/*<th>Room</th>*/}
                             <th>Time</th>
                             <th>Status</th>
                             <th></th>
@@ -122,10 +122,10 @@ const VisitorAppointmentsList = () => {
 
                             <tr key={appointment.id} onClick={() => setActiveVisitorAppointment(appointment, index)}>
                                 <td>{appointment.id}</td>
-                                <td>{appointment.firstName} {appointment.lastName}</td>
+                                <td>{appointment.firstName} {/*{appointment.lastName}*/}</td>
                                 <td>{appointment.treatmentType.name}</td>
                                 <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
-                                <td>{appointment.room}</td>
+                                {/*<td>{appointment.room}</td>*/}
                                 <td>{appointment.time}</td>
                                 <td>{appointment.status}</td>
                                 <td>{

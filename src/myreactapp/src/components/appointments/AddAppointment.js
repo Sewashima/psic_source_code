@@ -192,7 +192,7 @@ const AddAppointment = () => {
                         </div>*/}
 
                         <div className="form-group">
-                            <label htmlFor="patient">Patient</label>
+                            <label htmlFor="patient" className="leftTop">Patient</label>
                             <select className="form-control"
                                 onChange={handleInputChange}
                                 name="patientId"
@@ -267,7 +267,7 @@ const AddAppointment = () => {
                             </select>
                         </div>
 
-                        <div className="form-group">
+                        {/*<div className="form-group">
                             <label htmlFor="room">Room</label>
                             <select className="form-control"
                                     onChange={handleInputChange}
@@ -280,9 +280,9 @@ const AddAppointment = () => {
                                     )
                                 }
                             </select>
-                        </div>
+                        </div>*/}
 
-                        <div className="form-group">
+                        {/*<div className="form-group">
                             <label htmlFor="description">Note</label>
                             <input
                                 type="text"
@@ -292,7 +292,7 @@ const AddAppointment = () => {
                                 onChange={handleInputChange}
                                 name="note"
                             />
-                        </div>
+                        </div>*/}
 
                         <button onClick={saveAppointment} className="btn btn-success">
                             Submit

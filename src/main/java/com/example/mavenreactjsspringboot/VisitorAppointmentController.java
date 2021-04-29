@@ -45,11 +45,11 @@ public class VisitorAppointmentController {
     @PostMapping
     public VisitorAppointment createVisitorAppointment(@Valid @RequestBody VisitorAppointment visitorVisitorAppointment) {
         logger.info("VisitorAppointment create called");
-        String note = visitorVisitorAppointment.getNote();
-        if (note.isEmpty()) {
+//        String note = visitorVisitorAppointment.getNote();
+        /*if (note.isEmpty()) {
             logger.debug("Note is empty and shouldn't be");
 //            throw new ResourceNotFoundException()
-        }
+        }*/
         logger.info(String.format("VisitorAppointment creation with %s", visitorVisitorAppointment.toString()));
         return visitorAppointmentRepository.save(visitorVisitorAppointment);
     }

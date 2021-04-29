@@ -69,10 +69,10 @@ const ReportList = () => {
                             <th>Patient Name</th>
                             <th>Treatment Name</th>
                             <th>Physician Name</th>
-                            <th>Room</th>
-                            <th>Time</th>
+                            {/*<th>Room</th>*/}
+                            <th>Time & Room</th>
                             <th>Status</th>
-                            <th></th>
+                            {/*<th></th>*/}
                         </tr>
                         </thead>
                         <tbody>
@@ -83,7 +83,7 @@ const ReportList = () => {
                                 <td>{appointment.patient.firstName} {appointment.patient.lastName}</td>
                                 <td>{appointment.treatmentType.name}</td>
                                 <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
-                                <td>{appointment.room}</td>
+                                {/*<td>{appointment.room}</td>*/}
                                 <td>{appointment.time}</td>
                                 <td>{appointment.status}</td>
                                 {/*<td>{
@@ -125,10 +125,10 @@ const ReportList = () => {
                         <th>Patient Name</th>
                         <th>Treatment Name</th>
                         <th>Physician Name</th>
-                        <th>Room</th>
-                        <th>Time</th>
+                        {/*<th>Room</th>*/}
+                        <th>Time & Room</th>
                         <th>Status</th>
-                        <th></th>
+                        {/*<th></th>*/}
                     </tr>
                     </thead>
                     <tbody>
@@ -139,7 +139,7 @@ const ReportList = () => {
                             <td>{appointment.firstName} {appointment.lastName}</td>
                             <td>{appointment.treatmentType.name}</td>
                             <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
-                            <td>{appointment.room}</td>
+                            {/*<td>{appointment.room}</td>*/}
                             <td>{appointment.time}</td>
                             <td>{appointment.status}</td>
                             {/*<td>{

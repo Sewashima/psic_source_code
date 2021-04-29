@@ -111,7 +111,7 @@ const AppointmentsList = () => {
                             <th>Patient Name</th>
                             <th>Treatment Name</th>
                             <th>Physician Name</th>
-                            <th>Room</th>
+                            {/*<th>Room</th>*/}
                             <th>Time</th>
                             <th>Status</th>
                             <th></th>
@@ -125,7 +125,7 @@ const AppointmentsList = () => {
                                 <td>{appointment.patient.firstName} {appointment.patient.lastName}</td>
                                 <td>{appointment.treatmentType.name}</td>
                                 <td>{appointment.physician.firstName} {appointment.physician.lastName}</td>
-                                <td>{appointment.room}</td>
+                                {/*<td>{appointment.room}</td>*/}
                                 <td>{appointment.time}</td>
                                 <td>{appointment.status}</td>
                                 <td>{

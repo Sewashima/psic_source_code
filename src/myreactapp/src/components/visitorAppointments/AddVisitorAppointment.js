@@ -46,7 +46,8 @@ const AddVisitorAppointment = () => {
     };
 
     const retrievePhysicianByExpertise = (name) => {
-        console.log('retrievePhysicianByExpertise called: ', { name })
+        console.log('retrievePhysicianByExpertise called: ', { name });
+        setPhysicians([]);
         PhysicianDataService.getPhysicianByExpertise(name)
             .then(response => {
                 setPhysicians(response.data);
@@ -111,15 +112,16 @@ const AddVisitorAppointment = () => {
         const data = {
             status: 'open',
             firstName: appointment.firstName,
-            lastName: appointment.lastName,
+            lastName: "",
             room: appointment.room,
             time: appointment.time,
             note: appointment.note,
             reason: appointment.reason,
             physicianId: appointment.physicianId,
-            patientId: appointment.patientId,
+            // patientId: appointment.patientId,
             treatmentTypeId: appointment.treatmentTypeId,
         };
+        console.log({ data });
 
         AppointmentDataService.create(data)
             .then(response => {
@@ -135,7 +137,7 @@ const AddVisitorAppointment = () => {
                 console.log(response.data);
             })
             .catch(e => {
-                console.log({ e: e.response });
+                console.log({ e: e });
                 setError(true);
                 setErrorMessage(e.response.data.errors);
             });
@@ -167,9 +169,9 @@ const AddVisitorAppointment = () => {
                     </div>
                 ) : (
                     <div>
-                        <div className="row">
-                            <div className="form-group col-md-6">
-                                <label htmlFor="patient">First Name</label>
+                        {/*<div className="row">*/}
+                            <div className="form-group">
+                                <label htmlFor="patient" className="">Note (Visitor's Name)</label>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -181,7 +183,7 @@ const AddVisitorAppointment = () => {
 
                             </div>
 
-                            <div className="form-group col-md-6">
+                            {/*<div className="form-group col-md-6">
                                 <label htmlFor="patient">Last Name</label>
                                 <input
                                     type="text"
@@ -191,8 +193,8 @@ const AddVisitorAppointment = () => {
                                     onChange={handleInputChange}
                                     name="lastName"
                                 />
-                            </div>
-                        </div>
+                            </div>*/}
+                        {/*</div>*/}
 
                         <div className="form-group">
                             <label htmlFor="reason">Expertise</label>
@@ -253,7 +255,7 @@ const AddVisitorAppointment = () => {
                             </select>
                         </div>
 
-                        <div className="form-group">
+                        {/*<div className="form-group">
                             <label htmlFor="room">Room</label>
                             <select className="form-control"
                                     onChange={handleInputChange}
@@ -266,7 +268,7 @@ const AddVisitorAppointment = () => {
                                     )
                                 }
                             </select>
-                        </div>
+                        </div>*/}
 
                         <button onClick={saveAppointment} className="btn btn-success">
                             Submit

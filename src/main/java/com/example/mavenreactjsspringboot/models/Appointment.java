@@ -26,10 +26,10 @@ public class Appointment {
     @NotNull(message = "please provide a time")
     private String time;
 
-    @NotEmpty(message = "Please provide a reason")
+    @NotEmpty(message = "Please provide an expertise")
     private String reason;
 
-    @NotEmpty(message = "Please provide a room")
+//    @NotEmpty(message = "Please provide a room")
     private String room;
 
 //    @NotEmpty(message = "Please supply a note")
