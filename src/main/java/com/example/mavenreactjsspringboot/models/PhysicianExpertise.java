@@ -1,5 +1,7 @@
 package com.example.mavenreactjsspringboot.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,12 @@ public class PhysicianExpertise {
     @NotNull(message = "Please provide an expertise")
     @Column(name = "expertise_id")
     private Long expertiseId;
+
+    @JsonIgnore
+    @JsonBackReference
+    @OneToOne(targetEntity = Expertise.class, fetch = FetchType.EAGER)
+    @JoinColumn(name = "expertise_id", insertable = false, updatable = false)
+    private Expertise expertise;
 
     @CreationTimestamp
     private Date createdAt;

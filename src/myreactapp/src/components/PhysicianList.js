@@ -36,6 +36,7 @@ const PhysiciansList = () => {
     };
 
     const setActivePhysician = (physician, index) => {
+        console.log({ physician })
         setCurrentPhysician(physician);
         setCurrentIndex(index);
     };
@@ -133,7 +134,27 @@ const PhysiciansList = () => {
                             <label>
                                 <strong>Expertise:</strong>
                             </label>{" "}
-                            {currentPhysician.expertise}
+                            {
+                                currentPhysician.expertise.map((exp) => {
+                                    exp.expertise.name
+                                })
+                            }
+
+                            {
+                                <ul className="list-group">
+                                    {currentPhysician &&
+                                        currentPhysician.expertise.map((exp, index) => (
+                                            <li
+                                                className={"list-group-item "}
+                                                key={index}
+                                            >
+                                                {index + 1} - ({exp.expertise.name}
+                                            </li>
+                                        ))
+                                    }
+                            </ul>
+                            }
+
                         </div>
                         <div>
                             <label>
