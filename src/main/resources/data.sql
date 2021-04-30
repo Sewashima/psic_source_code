@@ -1,10 +1,10 @@
 -- CREATE DATABASE hms IF NOT EXISTS;
-INSERT INTO physicians (title, first_name, last_name, address, phone_number, consultation_time, created_at, updated_at) VALUES
-  ('Mr', 'Allen', 'Paul', 'Hatfield Hertfordshire', '07367855787', '2021-03-01 (Consulting Suites A)', '2021-03-01', '2021-03-01'),
-  ('Mrs', 'Sewashima', 'Tavershima', 'Hatfield Hertfordshire', '07130167617', '2021-03-01 (Consulting Suites B)', '2021-03-01', '2021-03-01'),
-  ('Mr', 'John', 'Sam', 'Hatfield Hertfordshire', '07167788999', '2021-03-01 (Consulting Suites C)', '2021-03-01', '2021-03-01'),
-  ('Mrs', 'Sarah', 'Alladyce', 'Hatfield Hertfordshire', '07130167623', '2021-03-01 (Gym)', '2021-03-01', '2021-03-01'),
-  ('Mr', 'Johnson', 'Fergie', 'Hatfield Hertfordshire', '07367776415', '2021-03-01 (Swimming pool)', '2021-03-01', '2021-03-01');
+INSERT INTO physicians (title, first_name, last_name, address, phone_number, created_at, updated_at) VALUES
+  ('Mr', 'Allen', 'Paul', 'Hatfield Hertfordshire', '07367855787', '2021-03-01', '2021-03-01'),
+  ('Mrs', 'Sewashima', 'Tavershima', 'Hatfield Hertfordshire', '07130167617', '2021-03-01', '2021-03-01'),
+  ('Mr', 'John', 'Sam', 'Hatfield Hertfordshire', '07167788999', '2021-03-01', '2021-03-01'),
+  ('Mrs', 'Sarah', 'Alladyce', 'Hatfield Hertfordshire', '07130167623', '2021-03-01', '2021-03-01'),
+  ('Mr', 'Johnson', 'Fergie', 'Hatfield Hertfordshire', '07367776415', '2021-03-01', '2021-03-01');
 
 INSERT INTO patients (title, first_name, last_name, age, phone_number, address) VALUES
     ('Mr.', 'Patient', 'Tunde', 24, '07367855787', 'Hatfield Hertfordshire' ),

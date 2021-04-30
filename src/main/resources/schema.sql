@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS physicians (
     address VARCHAR(250) NULL,
     phone_number VARCHAR(100) NULL,
     expertise_id VARCHAR(100) NULL,
-    consultation_time VARCHAR(200) NULL,
+--     consultation_time VARCHAR(200) NULL,
     created_at VARCHAR(100) NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at VARCHAR(100) NULL DEFAULT CURRENT_TIMESTAMP
 );

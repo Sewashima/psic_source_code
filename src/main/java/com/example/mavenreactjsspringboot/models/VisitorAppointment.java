@@ -45,7 +45,7 @@ public class VisitorAppointment {
     @Column(name = "physician_id")
     private Long physicianId;
 
-    @NotEmpty(message = " - Note must be provided - ")
+    @NotEmpty(message = " - Visitor name must be provided - ")
     @Size(min = 3, max = 30, message = " - min. of 3 and max of 30 characters for Note - ")
     private String firstName;
 

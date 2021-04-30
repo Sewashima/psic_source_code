@@ -38,7 +38,7 @@ const EditAppointment = props => {
 
     const attendAppointment = () => {
         console.log('attend appointment called');
-        AppointmentDataService.cancel(currentAppointment.id)
+        AppointmentDataService.attend(currentAppointment.id)
             .then(response => {
                 console.log(response.data);
                 props.history.push("/appointments");

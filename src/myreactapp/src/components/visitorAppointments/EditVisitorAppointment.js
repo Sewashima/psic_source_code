@@ -1,5 +1,5 @@
 import React, {useState, useEffect, Fragment} from "react";
-import AppointmentDataService from "../../services/AppointmentsService";
+import AppointmentDataService from "../../services/VisitorAppointmentsService";
 import {Link} from "react-router-dom";
 const utils = require('../../utils');
 
@@ -26,6 +26,18 @@ const EditVisitorAppointment = props => {
     const cancelAppointment = () => {
         console.log('cancel appointment called');
         AppointmentDataService.cancel(currentAppointment.id)
+            .then(response => {
+                console.log(response.data);
+                props.history.push("/visitor-appointments");
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    };
+
+    const attendAppointment = () => {
+        console.log('attend appointment called');
+        AppointmentDataService.attend(currentAppointment.id)
             .then(response => {
                 console.log(response.data);
                 props.history.push("/visitor-appointments");
@@ -82,14 +94,25 @@ const EditVisitorAppointment = props => {
                     <div>
                         {
                             currentAppointment.status === 'open' ? (
-                                <button className="badge badge-danger mr-2"
-                                        onClick={() => {
-                                            if (confirm('Are you sure to cancel?')) {
-                                                cancelAppointment();
-                                            }
-                                        }}>
-                                    Cancel
-                                </button>
+                                <div>
+                                    <button className="badge badge-danger mr-2"
+                                            onClick={() => {
+                                                if (confirm('Are you sure to cancel?')) {
+                                                    cancelAppointment();
+                                                }
+                                            }}>
+                                        Cancel
+                                    </button>
+
+                                    <button className="badge badge-info mr-2"
+                                            onClick={() => {
+                                                if (confirm('Sure this was attended?')) {
+                                                    attendAppointment();
+                                                }
+                                            }}>
+                                        Attend
+                                    </button>
+                                </div>
                             ) : null
                         }
 

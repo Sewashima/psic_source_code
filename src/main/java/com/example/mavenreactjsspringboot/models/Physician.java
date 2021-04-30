@@ -69,6 +69,12 @@ public class Physician {
 
     @JsonIgnore
     @JsonBackReference
+    @OneToMany(targetEntity = ConsultationTime.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "physician_id")
+    private List<ConsultationTime> consultationTimes;
+
+    @JsonIgnore
+    @JsonBackReference
 //    @OneToMany(mappedBy = "physician", fetch = FetchType.LAZY)
     @OneToMany(targetEntity = PhysicianExpertise.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "physician_id")

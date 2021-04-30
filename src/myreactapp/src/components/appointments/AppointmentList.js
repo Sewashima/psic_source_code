@@ -95,6 +95,11 @@ const AppointmentsList = () => {
             <div className="col-md-12">
                 <h4>Treatment Appointments List</h4>
 
+                <Link to={"/appointment/add"} className="badge badge-info">
+                    Book an Appointment
+                </Link>
+                <br/> <br/>
+
                 {/*<ul className="list-group">
                     {appointments &&
                     appointments.map((appointment, index) => (
@@ -157,9 +162,6 @@ const AppointmentsList = () => {
                 {/*</div>*/}
 
                 <br/>
-                <Link to={"/appointment/add"} className="badge badge-info">
-                    Book a Treatment Appointment
-                </Link>
                 {/*<button className="m-3 btn btn-sm btn-primary" onClick={createAppointment}>
                     Add Appointment
                 </button>*/}

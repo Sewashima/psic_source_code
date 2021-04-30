@@ -95,6 +95,11 @@ const VisitorAppointmentsList = () => {
             <div className="col-md-12">
                 <h4>VisitorAppointments List</h4>
 
+                <Link to={"/visitor-appointment/add"} className="badge badge-info">
+                    Book a Visitor Appointment
+                </Link>
+                <br/> <br/>
+
                 {/*<div className="containerMMM">*/}
                     <table className="table table-bordered table-striped">
                         <thead>
@@ -140,9 +145,6 @@ const VisitorAppointmentsList = () => {
                 {/*</div>*/}
 
                 <br/>
-                <Link to={"/visitor-appointment/add"} className="badge badge-info">
-                    Book a Visitor Appointment
-                </Link>
                 {/*<button className="m-3 btn btn-sm btn-primary" onClick={createVisitorAppointment}>
                     Add VisitorAppointment
                 </button>*/}

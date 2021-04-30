@@ -13,7 +13,7 @@ public interface PhysicianRepository extends JpaRepository<Physician, Long> {
             "left join expertise d on d.id = e.expertise_id = d.id WHERE e.expertise_id = :expertiseId",
             nativeQuery=true)*/
     @Query(value= "SELECT p.*, e.* FROM Physicians p left join physician_expertise pe on p.id = pe.physician_id " +
-            "left join expertise e on d.id = pe.expertise_id WHERE pe.expertise_id = :expertiseId",
+            "left join expertise e on e.id = pe.expertise_id WHERE pe.expertise_id = :expertiseId",
             nativeQuery=true)
     List<Physician> findByExpertiseId(Long expertiseId);
 
